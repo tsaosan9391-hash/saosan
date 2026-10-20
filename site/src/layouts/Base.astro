@@ -83,7 +83,7 @@ const naverVerification = verificationCode(seo.naverVerification);
           postalCode: church.zipcode || undefined,
           addressCountry: "KR",
         },
-        sameAs: church.youtube ? [church.youtube] : undefined,
+        sameAs: [church.youtube, church.instagram].filter(Boolean),
       })}
     />
   </head>

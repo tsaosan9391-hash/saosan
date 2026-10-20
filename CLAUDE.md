@@ -62,10 +62,10 @@ Claude가 읽는 지침입니다. 배경 설명은 [PLAN.md](PLAN.md) 참고.
 
 ## 유튜브
 
-- 아직 채널이 없다. `church.ts`의 `youtube`/`youtubeChannelId`가 비어 있으면
-  '교회영상' 메뉴와 영상 영역이 숨겨진다. 채널이 생기면 그 두 값과
-  `worker/index.js`, `scripts/update-video-cache.mjs`의 `CHANNEL_ID`를 채우고,
-  `.github/workflows/update-video-cache.yml`의 schedule 주석을 푼다.
+- 채널 ID `UCQnRcl2lhJfYNjYBEKs4ePw`. `church.ts`의 `youtube`/`youtubeChannelId`,
+  `worker/index.js`·`scripts/update-video-cache.mjs`의 `CHANNEL_ID`가 같은 값이어야
+  한다. `.github/workflows/update-video-cache.yml`이 매일 영상 목록 사본을 갱신한다.
+- 인스타그램 주소는 `settings/basic.json`의 `instagram`(관리자 화면에서 편집).
 
 ## 기타
 

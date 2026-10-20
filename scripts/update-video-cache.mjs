@@ -13,9 +13,8 @@
  */
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 
-// 유튜브 채널을 아직 연결하지 않아 비워 두었습니다.
-// 채널이 생기면 site/src/data/church.ts 의 youtubeChannelId 와 같은 값을 넣어 주세요.
-const CHANNEL_ID = "";
+// 구세군오산교회 유튜브 채널. site/src/data/church.ts 의 youtubeChannelId 와 같은 값입니다.
+const CHANNEL_ID = "UCQnRcl2lhJfYNjYBEKs4ePw";
 const OUT = "site/src/data/videos-cache.json";
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 const RETRIES = 5;

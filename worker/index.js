@@ -126,9 +126,8 @@ function setupNoticePage(reason) {
  * 유튜브는 브라우저에서 직접 부르는 것을 막아두었기 때문에(CORS)
  * 워커가 대신 불러다 줍니다.
  * ─────────────────────────────────────────────────────────── */
-// 유튜브 채널을 아직 연결하지 않아 비워 두었습니다.
-// 채널이 생기면 site/src/data/church.ts 의 youtubeChannelId 와 같은 값을 넣어 주세요.
-const CHANNEL_ID = "";
+// 구세군오산교회 유튜브 채널. site/src/data/church.ts 의 youtubeChannelId 와 같은 값입니다.
+const CHANNEL_ID = "UCQnRcl2lhJfYNjYBEKs4ePw";
 const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 function decodeEntities(s) {

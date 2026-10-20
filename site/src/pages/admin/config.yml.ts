@@ -63,6 +63,11 @@ collections:
             widget: string
             required: false
             hint: 문의를 받을 이메일입니다. 비워 두면 이메일 안내가 숨겨집니다.
+          - label: 인스타그램 주소
+            name: instagram
+            widget: string
+            required: false
+            hint: 예) https://www.instagram.com/osan_church/ — 비워 두면 바닥글의 인스타그램 버튼이 숨겨집니다.
           - label: 주소
             name: address
             widget: string

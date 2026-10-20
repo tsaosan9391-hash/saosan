@@ -35,18 +35,37 @@ import { church, navigation, mainServices, relatedSites, fullAddress } from "../
             </a>
           </p>
         )}
-        {church.youtube && (
-        <a
-          href={church.youtube}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="mt-5 inline-flex items-center gap-2 rounded-md border border-white/25 px-3.5 py-2 text-sm font-bold text-white transition-colors hover:bg-white/10"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"></path>
-          </svg>
-          유튜브 채널
-        </a>
+        {(church.youtube || church.instagram) && (
+          <div class="mt-5 flex flex-wrap gap-2">
+            {church.youtube && (
+            <a
+              href={church.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-md border border-white/25 px-3.5 py-2 text-sm font-bold text-white transition-colors hover:bg-white/10"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"></path>
+              </svg>
+              유튜브 채널
+            </a>
+            )}
+            {church.instagram && (
+            <a
+              href={church.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-md border border-white/25 px-3.5 py-2 text-sm font-bold text-white transition-colors hover:bg-white/10"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                <circle cx="12" cy="12" r="4.5"></circle>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"></circle>
+              </svg>
+              인스타그램
+            </a>
+            )}
+          </div>
         )}
       </div>
 
