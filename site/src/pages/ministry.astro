@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
-import { church, ministries, buildingConcept } from "../data/church";
+import { church, ministries } from "../data/church";
 
 // 지역을 섬긴 활동 앨범 — 공개로 설정한 것만, 최근 순으로
 const serviceAlbums = (
@@ -16,7 +16,7 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
 
 <Base
   title="사역"
-  description={`${church.name}의 사역 — 지역 섬김, 찬양과 예배, 제자훈련, 다음 세대, 선교, 교회 건축.`}
+  description={`${church.name}의 사역 — ${ministries.map((m) => m.title).join(", ")}.`}
 >
   <PageHeader
     eyebrow="사역"
@@ -122,80 +122,6 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
     )
   }
 
-  {/* ─── 교회 건축 ──────────────────────────────────── */}
-  <section class="bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <p class="eyebrow">교회 건축</p>
-      <h2 class="mt-4 text-3xl font-bold leading-snug sm:text-4xl">
-        {buildingConcept}
-      </h2>
-
-      <figure class="mt-12 overflow-hidden rounded-xl border border-sa-line">
-        <picture>
-          <source
-            media="(min-width: 1024px)"
-            srcset="/images/build-1800.webp"
-            type="image/webp"
-          />
-          <source srcset="/images/build-1000.webp" type="image/webp" />
-          <img
-            src="/images/build-1800.jpg"
-            alt="구세군 대구사랑교회 신축 성전 조감도"
-            width="1800"
-            height="1183"
-            class="w-full"
-          />
-        </picture>
-        <figcaption class="bg-white px-6 py-4 text-sm text-sa-muted">
-          신축 성전 조감도
-        </figcaption>
-      </figure>
-
-      <div class="mt-12 grid gap-12 lg:grid-cols-2">
-        <div>
-          <h3 class="text-xl font-bold">낮은 자리에 서는 교회</h3>
-          <p class="mt-4 leading-relaxed text-sa-muted">
-            높고 화려한 건물이 아니라, 지역의 이웃이 부담 없이 들어올 수 있는
-            낮은 자리에 서는 교회를 그리고 있습니다. 예배당과 함께 지역을 향해
-            열린 공간을 마련하여, 교회 문턱을 넘기 어려웠던 분들도 편하게 오실 수
-            있도록 준비하고 있습니다.
-          </p>
-        </div>
-        <div>
-          <h3 class="text-xl font-bold">함께 기도해 주십시오</h3>
-          <p class="mt-4 leading-relaxed text-sa-muted">
-            교회 건축이 하나님의 계획과 방법대로, 하나님의 인도하심 가운데 반석과
-            같이 견고하고 아름답게 세워질 수 있도록 계속해서 기도합시다.
-          </p>
-          <a
-            href="/news"
-            class="mt-6 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
-          >
-            건축 소식 보기 <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* ─── 선교 ───────────────────────────────────────── */}
-  <section class="bg-sa-surface py-20 md:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <p class="eyebrow">선교</p>
-      <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
-        선교사 가정을 후원하며 함께 기도합니다
-      </h2>
-      <div class="mt-10 max-w-2xl rounded-xl border-l-4 border-sa-gold bg-white p-8">
-        <p class="text-lg font-bold">이승훈 · 장아름 선교사 가정</p>
-        <p class="mt-2 text-sa-muted">자녀 이유빈, 이다빈</p>
-        <p class="mt-5 leading-relaxed text-sa-muted">
-          대구사랑교회가 후원하고 있는 선교사 가정입니다. 늘 중보기도로 함께해
-          주시기 바랍니다.
-        </p>
-      </div>
-    </div>
-  </section>
-
   {/* ─── 문의 ───────────────────────────────────────── */}
   <section class="bg-sa-navy py-16 text-white">
     <div
@@ -208,10 +134,10 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
         </p>
       </div>
       <a
-        href={`mailto:${church.email}`}
+        href={`tel:${church.phone}`}
         class="rounded-md bg-sa-red px-7 py-3.5 font-bold text-white transition-colors hover:bg-sa-red-dark"
       >
-        이메일로 문의
+        전화로 문의
       </a>
     </div>
   </section>

@@ -11,7 +11,7 @@ import {
 
 /** 각 예배가 어떤 시간인지 짧은 설명 */
 const serviceNotes: Record<string, string> = {
-  "주일 성결예배": "한 주를 여는 대표 예배입니다. 찬양대와 악대가 함께 예배를 세웁니다.",
+  "주일 성결예배": "한 주를 여는 대표 예배입니다. 홀리니스 찬양팀이 함께 예배를 세웁니다.",
   "주일 오후예배": "말씀을 조금 더 깊이 나누는 시간입니다.",
   "수요예배": "주중에 말씀으로 다시 힘을 얻는 시간입니다.",
   "금요기도회": "한 주간의 짐을 내려놓고 함께 기도하는 시간입니다.",
@@ -32,14 +32,14 @@ const firstVisit = [
   },
   {
     q: "아이와 함께 가도 되나요?",
-    a: "영아부와 유치부가 주일 오전 10시에 모입니다. 편하게 함께 오세요.",
+    a: "물론입니다. 온 세대 예배처럼 아이와 어른이 함께 드리는 예배도 있습니다. 편하게 함께 오세요.",
   },
 ];
 ---
 
 <Base
   title="예배와 모임"
-  description={`${church.name} 예배 시간 안내 — 주일 성결예배 오전 11시, 수요예배 저녁 8시, 금요기도회 저녁 8시.`}
+  description={`${church.name} 예배 시간 안내 — ${mainServices.map((s) => `${s.name} ${s.time}`).join(", ")}.`}
 >
   {/*
     사진을 배너처럼 딱 잘라 보여주지 않고, 머리글부터 예배 시간
@@ -98,6 +98,7 @@ const firstVisit = [
           }
         </div>
 
+        {prayerServices.length > 0 && (
         <div class="mt-6 grid gap-6 md:grid-cols-2">
           {
             prayerServices.map((s) => (
@@ -108,11 +109,13 @@ const firstVisit = [
             ))
           }
         </div>
+        )}
       </div>
     </section>
   </div>
 
   {/* ─── 교회학교와 모임 ────────────────────────────── */}
+  {groups.length > 0 && (
   <section class="bg-sa-surface py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="eyebrow">교회학교와 모임</p>
@@ -182,6 +185,7 @@ const firstVisit = [
       </div>
     </div>
   </section>
+  )}
 
   <script>
     // 어느 줄에 마우스를 올리든, 그 줄의 사진/영상이 목록 전체를 덮는
@@ -293,13 +297,13 @@ const firstVisit = [
       <div class="mt-14 rounded-xl bg-sa-red-soft p-9">
         <h3 class="text-xl font-bold">방문 전에 궁금한 점이 있으신가요?</h3>
         <p class="mt-3 text-sa-muted">
-          편하게 이메일 주세요. 어떤 질문이든 괜찮습니다.
+          편하게 교회로 연락 주세요. 어떤 질문이든 괜찮습니다.
         </p>
         <a
-          href={`mailto:${church.email}`}
+          href={`tel:${church.phone}`}
           class="mt-6 inline-flex items-center gap-2 rounded-md bg-sa-red px-7 py-3.5 font-bold text-white transition-colors hover:bg-sa-red-dark"
         >
-          {church.email}
+          {church.phone}
         </a>
       </div>
     </div>

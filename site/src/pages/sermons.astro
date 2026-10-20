@@ -44,14 +44,16 @@ const eventVideos = allVideos.filter((v) => v.category === "event");
           <p class="eyebrow">말씀</p>
           <h2 class="mt-4 text-2xl font-bold sm:text-3xl">설교 영상</h2>
         </div>
-        <a
-          href={church.youtube}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="font-bold text-sa-red hover:underline"
-        >
-          유튜브 채널 바로가기 →
-        </a>
+        {church.youtube && (
+          <a
+            href={church.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-bold text-sa-red hover:underline"
+          >
+            유튜브 채널 바로가기 →
+          </a>
+        )}
       </div>
 
       {

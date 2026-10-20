@@ -67,14 +67,16 @@ const pageTitle = title ? `${title} | ${church.name}` : `${church.name}`;
         "@type": "Church",
         name: church.name,
         alternateName: church.nameEn,
-        email: church.email,
+        // 값이 비어 있는 항목은 JSON.stringify 가 undefined 로 빼 줍니다
+        telephone: church.phone || undefined,
+        email: church.email || undefined,
         address: {
           "@type": "PostalAddress",
           streetAddress: church.address,
-          postalCode: church.zipcode,
+          postalCode: church.zipcode || undefined,
           addressCountry: "KR",
         },
-        sameAs: [church.youtube],
+        sameAs: church.youtube ? [church.youtube] : undefined,
       })}
     />
   </head>

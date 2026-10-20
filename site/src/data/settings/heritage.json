@@ -1,12 +1,6 @@
 {
   "photos": [
-    {
-      "src": "/images/uploads/2025-한마음체육대회.jpg",
-      "caption": "2025 한마음체육대회"
-    },
-    {
-      "src": "/images/uploads/2026-야외예배-드론.jpg",
-      "caption": "2026 야외예배"
-    }
+    { "src": "/images/uploads/추수감사주일.jpg", "caption": "추수감사주일" },
+    { "src": "/images/uploads/2026-10-11-새가족초청예배.jpg", "caption": "2026 새가족 초청예배" }
   ]
 }

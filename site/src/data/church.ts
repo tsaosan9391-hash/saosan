@@ -36,19 +36,18 @@ const DEFAULTS = {
     ministry: "사역",
     gallery: "사진",
     news: "소식",
-    tour: "새 성전 둘러보기",
     visit: "오시는 길",
   } as Record<string, string>,
   slogan: "마음은 하나님께 손길은 이웃에게",
-  address: "대구광역시 서구 새방로27길 17-1 (상리동)",
-  zipcode: "41751",
-  email: "sarmydglove@gmail.com",
-  buildingConcept: "하나님의 마음을 만나는 낮은 자리 교회",
+  address: "경기도 오산시 현충로72번길 24",
+  zipcode: "",
+  phone: "031-374-7404",
+  email: "",
   mainServices: [
     { name: "주일 성결예배", day: "주일", time: "오전 11:00" },
   ] as MainService[],
-  prayerServices: [{ name: "새벽기도회", time: "화~금 오전 6:00" }] as Service[],
-  groups: [{ name: "주일학교", time: "주일 오후 1:30" }] as Service[],
+  prayerServices: [] as Service[],
+  groups: [] as Service[],
   officers: [] as Officer[],
   visions: [] as string[],
   heritagePhotos: [] as HeritagePhoto[],
@@ -77,28 +76,31 @@ function or<T>(value: T | undefined | null, fallback: T): T {
 }
 
 export const church = {
-  // 홈페이지에서 부르는 이름은 '구세군 대구사랑교회' 하나로 통일합니다.
+  // 홈페이지에서 부르는 이름은 '구세군오산교회' 하나로 통일합니다.
   // (구세군에서는 교회를 '영문'이라고도 부르지만, 처음 오시는 분이
   //  두 이름을 다른 곳으로 오해하지 않도록 한 가지만 씁니다)
-  name: "구세군 대구사랑교회",
+  name: "구세군오산교회",
   // 영문 표기의 Corps 는 구세군 교회를 가리키는 세계 공통 정식 명칭입니다.
-  nameEn: "The Salvation Army Daegusarang Corps",
+  nameEn: "The Salvation Army Osan Corps",
   slogan: or(basicSettings.slogan, DEFAULTS.slogan),
   address: or(basicSettings.address, DEFAULTS.address),
   zipcode: or(basicSettings.zipcode, DEFAULTS.zipcode),
-  // 공개 방침: 전화번호는 게재하지 않고 이메일만 안내. 사관 개인 연락처·헌금 계좌는 게재하지 않음.
+  // 공개 방침: 교회 대표전화와 이메일만 안내. 사관 개인 연락처·헌금 계좌는 게재하지 않음.
+  phone: or(basicSettings.phone, DEFAULTS.phone),
+  // 비어 있으면 화면에서 이메일 안내를 숨깁니다.
   email: or(basicSettings.email, DEFAULTS.email),
   // 유튜브 연동은 기술적인 설정이라 관리자 화면에서는 다루지 않습니다.
-  // 채널 주소를 바꾸실 일이 있으면 이 파일을 직접 고쳐주세요.
-  youtube: "https://www.youtube.com/@sarmydglove",
-  youtubeChannelId: "UCRHxTWlrl2b2bHXxKJOBGyQ",
+  // 아직 채널이 없어 비워 두었습니다. 비어 있으면 '교회영상' 메뉴와
+  // 영상 영역이 모두 숨겨집니다. 채널이 생기면 두 값을 채우고,
+  // worker/index.js · scripts/update-video-cache.mjs 의 CHANNEL_ID 도 같이 바꿔 주세요.
+  youtube: "",
+  youtubeChannelId: "",
 };
 
-/** 신축 예정 성전 설계 컨셉 (설계사무소 제공 자료) */
-export const buildingConcept = or(
-  ministrySettings.buildingConcept,
-  DEFAULTS.buildingConcept,
-);
+/** 주소 앞에 우편번호를 붙여 보여줍니다. 우편번호가 없으면 주소만. */
+export const fullAddress = church.zipcode
+  ? `(${church.zipcode}) ${church.address}`
+  : church.address;
 
 /** 주요 예배 — 메인 화면에 크게 노출 */
 export const mainServices = or(worshipTimes.mainServices, DEFAULTS.mainServices);
@@ -132,8 +134,8 @@ export const worshipPhotos = or(
 
 /**
  * 메인 화면 맨 위(히어로) 배경 슬라이드 사진.
- * 관리자 화면에서 올리지 않으면 빈 배열이며, 이 경우 신축 성전
- * 조감도 하나만 보여줍니다(기존 방식 그대로, index.astro 에서 처리).
+ * 관리자 화면에서 올리지 않으면 빈 배열이며, 이 경우 기본 사진
+ * 하나만 보여줍니다(index.astro 에서 처리).
  *
  * 히어로는 가로로 넓고 납작해서, 사진의 위아래가 잘려 나갑니다.
  * 사람이 아래쪽에 몰려 있는 단체사진처럼 잘리면 안 되는 사진은
@@ -258,14 +260,11 @@ export const intro = {
   ),
 };
 
-/** 사역 — 마지막 '교회 건축' 항목은 buildingConcept 로 자동 생성합니다 */
-export const ministries: Ministry[] = [
-  ...or(ministrySettings.ministries, DEFAULTS.ministries),
-  {
-    title: "교회 건축",
-    desc: `“${buildingConcept}” — 새 성전을 향해 함께 기도하며 준비하고 있습니다.`,
-  },
-];
+/** 사역 소개 */
+export const ministries: Ministry[] = or(
+  ministrySettings.ministries,
+  DEFAULTS.ministries,
+);
 
 /**
  * 구세군 관련 사이트
@@ -304,10 +303,12 @@ const navLabels = { ...DEFAULTS.navLabels, ...navSettings };
 export const navigation = [
   { label: navLabels.about, href: "/about" },
   { label: navLabels.worship, href: "/worship" },
-  { label: navLabels.sermons, href: "/sermons" },
+  // 유튜브 채널이 없으면 '교회영상' 메뉴를 숨깁니다
+  ...(church.youtubeChannelId
+    ? [{ label: navLabels.sermons, href: "/sermons" }]
+    : []),
   { label: navLabels.ministry, href: "/ministry" },
   { label: navLabels.gallery, href: "/gallery" },
   { label: navLabels.news, href: "/news" },
-  { label: navLabels.tour, href: "/tour" },
   { label: navLabels.visit, href: "/visit" },
 ];

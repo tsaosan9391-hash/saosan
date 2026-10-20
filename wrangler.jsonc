@@ -8,7 +8,7 @@
   // worker/index.js 는 관리자 화면(/admin) 로그인만 처리하고,
   // 나머지 모든 주소는 site/dist 의 정적 파일을 그대로 내보냅니다.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "daegu-sarang-church",
+  "name": "osan-church",
   "compatibility_date": "2026-07-01",
   "main": "./worker/index.js",
   // workers.dev 임시 주소를 계속 켜 둡니다. (한 번 꺼졌다가 복구한 적이 있어
@@ -27,8 +27,11 @@
   "observability": {
     "enabled": true
   },
-  // 방문자 카운터 값을 저장하는 KV 네임스페이스
-  "kv_namespaces": [
-    { "binding": "VISITS", "id": "47743bb25724427982326cc4da6d5242" }
-  ]
+  // 방문자 카운터 값을 저장하는 KV 네임스페이스.
+  // 아직 만들지 않았습니다. 없으면 방문자 수만 숨겨지고 나머지는 정상 동작합니다.
+  // Cloudflare 대시보드 → Storage & Databases → KV 에서 하나 만든 뒤
+  // 아래 주석을 풀고 id 를 넣어 주세요.
+  // "kv_namespaces": [
+  //   { "binding": "VISITS", "id": "여기에-KV-id" }
+  // ]
 }

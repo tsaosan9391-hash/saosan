@@ -1,8 +1,8 @@
 {
-  "name": "daegu-sarang-church",
+  "name": "osan-church",
   "version": "0.1.0",
   "private": true,
-  "description": "구세군 대구사랑교회 홈페이지",
+  "description": "구세군오산교회 홈페이지",
   "scripts": {
     "dev": "npm --prefix site run dev",
     "build": "node scripts/strip-exif.mjs && node scripts/resize-photos.mjs && npm --prefix site install --no-audit --no-fund && npm --prefix site run build",

@@ -43,19 +43,7 @@ collections:
           - { label: "사역 메뉴", name: ministry, widget: string }
           - { label: "사진 메뉴", name: gallery, widget: string }
           - { label: "소식 메뉴", name: news, widget: string }
-          - { label: "새 성전 둘러보기 메뉴", name: tour, widget: string }
           - { label: "오시는 길 메뉴", name: visit, widget: string }
-
-      - name: tour
-        label: 새 성전 둘러보기
-        file: site/src/data/settings/tour.json
-        description: >-
-          '새 성전 둘러보기' 페이지에 나오는 3D 모델과 안내 문장입니다.
-          3D 모델 주소는 모델을 다른 곳으로 옮길 때만 바꾸세요.
-        fields:
-          - { label: "안내 문장", name: intro, widget: text }
-          - { label: "참고 문구(작은 글씨)", name: note, widget: text }
-          - { label: "3D 모델 주소", name: url, widget: string, hint: "https://로 시작하는 주소. 비워 두면 기본 주소를 씁니다." }
 
       - name: basic
         label: 기본 정보
@@ -65,16 +53,23 @@ collections:
             name: slogan
             widget: string
             hint: 메인 화면 큰 제목으로 쓰입니다.
+          - label: 대표전화
+            name: phone
+            widget: string
+            required: false
+            hint: 교회 대표번호만 적어 주세요. 사관 개인 휴대폰 번호는 넣지 않습니다.
           - label: 이메일
             name: email
             widget: string
-            hint: 문의를 받을 이메일입니다. 전화번호는 개인정보 보호를 위해 게재하지 않습니다.
+            required: false
+            hint: 문의를 받을 이메일입니다. 비워 두면 이메일 안내가 숨겨집니다.
           - label: 주소
             name: address
             widget: string
           - label: 우편번호
             name: zipcode
             widget: string
+            required: false
 
       - name: hero
         label: 메인 화면 배경 사진
@@ -82,8 +77,8 @@ collections:
         description: >-
           메인 화면 맨 위 큰 배경에 나오는 사진입니다. 여러 장을 올리면
           한 장씩 자동으로 넘어가고, 방문자가 왼쪽 아래 번호를 눌러 원하는
-          사진을 바로 볼 수도 있습니다. 아무것도 안 올리면 신축 성전
-          조감도가 그대로 나옵니다.
+          사진을 바로 볼 수도 있습니다. 아무것도 안 올리면 기본 예배당
+          사진이 나옵니다.
           📐 사진이 잘리는 부분을 맞추려면 여기 숫자를 고치지 마시고,
           ‘배경 사진 위치 맞추기’ 화면에서 사진을 직접 끌어서 맞춰 주세요 →
           /admin/hero
@@ -187,7 +182,7 @@ collections:
             summary: "{{fields.role}} {{fields.rank}} {{fields.name}}"
             fields:
               - { label: 직책, name: role, widget: string, hint: "예) 담임사관" }
-              - { label: 계급, name: rank, widget: string, hint: "예) 참령" }
+              - { label: 계급, name: rank, widget: string, required: false, hint: "예) 참령 · 정위. 비워 두면 이름만 나옵니다." }
               - { label: 성함, name: name, widget: string }
 
       - name: vision
@@ -273,22 +268,16 @@ collections:
               - label: 설명
                 name: caption
                 widget: string
-                hint: "예) 1998년 명덕교회 예배당, 2015년 세 교회 합병 기념 예배"
+                hint: "예) 2026 추수감사주일"
 
       - name: ministry
-        label: 사역 소개 · 교회 건축
+        label: 사역 소개
         file: site/src/data/settings/ministry.json
         fields:
-          - label: 신축 성전 설계 컨셉
-            name: buildingConcept
-            widget: string
-            hint: 조감도와 함께 표시되는 한 문장입니다.
-
           - label: 사역 소개
             name: ministries
             widget: list
             summary: "{{fields.title}}"
-            hint: "‘교회 건축’ 항목은 위 설계 컨셉으로 자동 생성되므로 여기에 넣지 않아도 됩니다."
             fields:
               - { label: 제목, name: title, widget: string }
               - { label: 설명, name: desc, widget: text }

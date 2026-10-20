@@ -23,7 +23,7 @@ const kettleFacts = [
 const terms = [
   {
     term: "영문 (營門)",
-    desc: "구세군에서 교회를 부르는 전통적인 말입니다. 주보나 공문에 ‘구세군대구사랑영문’이라고 적힌 것을 보셨다면 이곳과 같은 곳입니다. 이 홈페이지에서는 ‘구세군 대구사랑교회’로 통일해 부릅니다.",
+    desc: "구세군에서 교회를 부르는 전통적인 말입니다. 공문 등에 ‘구세군오산영문’이라고 적힌 것을 보셨다면 이곳과 같은 곳입니다. 이 홈페이지에서는 ‘구세군오산교회’로 통일해 부릅니다.",
   },
   {
     term: "사관 (士官)",
@@ -31,7 +31,7 @@ const terms = [
   },
   {
     term: "참령 · 정위",
-    desc: "사관의 계급을 나타내는 말입니다. 이름 앞에 함께 적습니다. 참령은 정위로 오래 사역한 사관에게 주어지는 계급으로, 우리 교회 담임사관·목양담당사관도 참령입니다.",
+    desc: "사관의 계급을 나타내는 말입니다. 이름 앞에 함께 적습니다. 참령은 정위로 오래 사역한 사관에게 주어지는 계급입니다.",
   },
   {
     term: "성결예배",
@@ -70,8 +70,8 @@ const terms = [
 >
   <PageHeader
     eyebrow="교회 소개"
-    title="구세군 대구사랑교회입니다"
-    description="예배와 삶 속에서 하나님을 깊이 인격적으로 경험하여, 세상 가운데 하나님을 전하는 교회입니다."
+    title={`${church.name}입니다`}
+    description="모든 세대가 함께 예배하며, 영혼을 살리는 교회입니다."
   />
 
   {/* ─── 인사말 ─────────────────────────────────────── */}
@@ -258,11 +258,12 @@ const terms = [
   </section>
 
   {/* ─── 비전 ───────────────────────────────────────── */}
+  {visions.length > 0 && (
   <section class="bg-sa-navy py-20 text-white md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="text-sm font-bold tracking-[0.1em] text-sa-gold">교회 비전</p>
       <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
-        우리가 함께 바라보는 여섯 가지
+        우리가 함께 바라보는 {visions.length}가지
       </h2>
       <ol class="mt-12 grid gap-x-10 gap-y-7 md:grid-cols-2">
         {
@@ -278,6 +279,7 @@ const terms = [
       </ol>
     </div>
   </section>
+  )}
 
   {/* ─── 섬기는 이들 ────────────────────────────────── */}
   <section class="py-20 md:py-24">
@@ -294,19 +296,27 @@ const terms = [
                 {o.name}
                 <span class="ml-1.5 text-base font-bold text-sa-muted">사관</span>
               </p>
-              <p class="mt-2 text-sm text-sa-muted">{o.rank}</p>
+              {o.rank && <p class="mt-2 text-sm text-sa-muted">{o.rank}</p>}
             </div>
           ))
         }
       </div>
 
       <p class="mt-8 text-sm text-sa-muted">
-        문의는 이메일
+        문의는 교회 대표전화
         <a
-          href={`mailto:${church.email}`}
-          class="font-bold text-sa-red hover:underline">{church.email}</a
-        >
-        으로 연락해 주시기 바랍니다.
+          href={`tel:${church.phone}`}
+          class="font-bold text-sa-red hover:underline">{church.phone}</a
+        >{church.email && (
+          <>
+            {" "}또는 이메일{" "}
+            <a
+              href={`mailto:${church.email}`}
+              class="font-bold text-sa-red hover:underline">{church.email}</a
+            >
+          </>
+        )}
+        로 연락해 주시기 바랍니다.
       </p>
     </div>
   </section>

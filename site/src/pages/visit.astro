@@ -1,9 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import PageHeader from "../components/PageHeader.astro";
-import { church, mainServices } from "../data/church";
+import { church, mainServices, fullAddress } from "../data/church";
 
-const query = encodeURIComponent(`${church.address} 구세군 대구사랑교회`);
+const query = encodeURIComponent(`${church.address} ${church.name}`);
 const maps = [
   {
     name: "카카오맵",
@@ -25,12 +25,12 @@ const maps = [
 
 <Base
   title="오시는 길"
-  description={`${church.name} 위치 안내 — ${church.address}. 이메일 ${church.email}.`}
+  description={`${church.name} 위치 안내 — ${church.address}. 대표전화 ${church.phone}.`}
 >
   <PageHeader
     eyebrow="오시는 길"
     title="교회로 오시는 길"
-    description="찾아오시기 어려우시면 언제든 이메일로 문의해 주세요. 안내해 드리겠습니다."
+    description="찾아오시기 어려우시면 언제든 교회로 문의해 주세요. 안내해 드리겠습니다."
   />
 
   <section class="py-20 md:py-24">
@@ -46,21 +46,34 @@ const maps = [
           <dl class="mt-10 space-y-7">
             <div class="border-l-3 border-sa-red pl-5">
               <dt class="text-sm font-bold text-sa-muted">주소</dt>
-              <dd class="mt-1.5 text-lg font-bold">
-                ({church.zipcode}) {church.address}
-              </dd>
+              <dd class="mt-1.5 text-lg font-bold">{fullAddress}</dd>
             </div>
-            <div class="border-l-3 border-sa-red pl-5">
-              <dt class="text-sm font-bold text-sa-muted">이메일</dt>
-              <dd class="mt-1.5">
-                <a
-                  href={`mailto:${church.email}`}
-                  class="text-lg font-bold text-sa-red hover:underline break-all"
-                >
-                  {church.email}
-                </a>
-              </dd>
-            </div>
+            {church.phone && (
+              <div class="border-l-3 border-sa-red pl-5">
+                <dt class="text-sm font-bold text-sa-muted">대표전화</dt>
+                <dd class="mt-1.5">
+                  <a
+                    href={`tel:${church.phone}`}
+                    class="text-lg font-bold text-sa-red hover:underline"
+                  >
+                    {church.phone}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {church.email && (
+              <div class="border-l-3 border-sa-red pl-5">
+                <dt class="text-sm font-bold text-sa-muted">이메일</dt>
+                <dd class="mt-1.5">
+                  <a
+                    href={`mailto:${church.email}`}
+                    class="text-lg font-bold text-sa-red hover:underline break-all"
+                  >
+                    {church.email}
+                  </a>
+                </dd>
+              </div>
+            )}
           </dl>
 
           {/* 지도 앱으로 연결 */}
@@ -87,10 +100,10 @@ const maps = [
           </div>
 
           <a
-            href={`mailto:${church.email}`}
+            href={`tel:${church.phone}`}
             class="mt-10 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sa-red px-6 py-4 text-lg font-bold text-white transition-colors hover:bg-sa-red-dark sm:w-auto sm:px-10"
           >
-            이메일로 문의하기
+            전화로 문의하기
           </a>
         </div>
 
@@ -126,7 +139,7 @@ const maps = [
       <h2 class="text-xl font-bold text-sa-gold">처음 오시는 분께</h2>
       <p class="mt-4 max-w-3xl leading-relaxed text-white/80">
         준비하실 것은 아무것도 없습니다. 편한 복장으로 오셔서 예배만 드리셔도
-        괜찮습니다. 교회를 찾기 어려우시거나 궁금한 점이 있으시면 이메일로
+        괜찮습니다. 교회를 찾기 어려우시거나 궁금한 점이 있으시면 교회로
         문의해 주세요. 반갑게 맞이하겠습니다.
       </p>
     </div>

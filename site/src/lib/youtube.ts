@@ -41,16 +41,16 @@ function decodeEntities(s: string): string {
 }
 
 /**
- * 교회 이름을 '구세군 대구사랑교회' 하나로 통일합니다.
+ * 교회 이름을 '구세군오산교회' 하나로 통일합니다.
  *
- * 유튜브에 예전 이름('구세군대구사랑영문')으로 올라간 영상이 섞여 있어,
+ * 유튜브에 '구세군오산영문'처럼 영문(營門) 표기로 올라간 영상이 있으면,
  * 홈페이지에 보여줄 때만 현재 이름으로 바꿔 씁니다.
  * (유튜브 쪽 제목 자체는 그대로이므로, 원하시면 유튜브에서 직접 고치시면 됩니다)
  *
- * '대구사랑영문' 만 바꾸면 '구세군대구사랑영문' 도 함께 처리됩니다.
+ * '오산영문' 만 바꾸면 '구세군오산영문' 도 함께 처리됩니다.
  */
 export function unifyChurchName(text: string): string {
-  return text.replace(/대구사랑\s*영문/g, "대구사랑교회");
+  return text.replace(/오산\s*영문/g, "오산교회");
 }
 
 function pick(block: string, tag: string): string {
@@ -137,6 +137,8 @@ export async function fetchChannelVideos(
   channelId: string,
   limit = 12,
 ): Promise<Video[]> {
+  // 유튜브 채널을 아직 연결하지 않았으면 아무것도 가져오지 않습니다
+  if (!channelId) return [];
   if (!feedCache) feedCache = loadFeed(channelId);
   return (await feedCache).slice(0, limit);
 }
