@@ -43,6 +43,7 @@ const DEFAULTS = {
   zipcode: "",
   phone: "031-374-7404",
   email: "",
+  instagram: "",
   mainServices: [
     { name: "주일 성결예배", day: "주일", time: "오전 11:00" },
   ] as MainService[],
@@ -89,12 +90,13 @@ export const church = {
   phone: or(basicSettings.phone, DEFAULTS.phone),
   // 비어 있으면 화면에서 이메일 안내를 숨깁니다.
   email: or(basicSettings.email, DEFAULTS.email),
+  // 비어 있으면 바닥글의 인스타그램 버튼이 숨겨집니다.
+  instagram: or(basicSettings.instagram, DEFAULTS.instagram),
   // 유튜브 연동은 기술적인 설정이라 관리자 화면에서는 다루지 않습니다.
-  // 아직 채널이 없어 비워 두었습니다. 비어 있으면 '교회영상' 메뉴와
-  // 영상 영역이 모두 숨겨집니다. 채널이 생기면 두 값을 채우고,
+  // 비우면 '교회영상' 메뉴와 영상 영역이 모두 숨겨집니다. 채널을 바꾸면
   // worker/index.js · scripts/update-video-cache.mjs 의 CHANNEL_ID 도 같이 바꿔 주세요.
-  youtube: "",
-  youtubeChannelId: "",
+  youtube: "https://www.youtube.com/channel/UCQnRcl2lhJfYNjYBEKs4ePw",
+  youtubeChannelId: "UCQnRcl2lhJfYNjYBEKs4ePw",
 };
 
 /** 주소 앞에 우편번호를 붙여 보여줍니다. 우편번호가 없으면 주소만. */
