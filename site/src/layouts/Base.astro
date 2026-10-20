@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { church } from "../data/church";
+import seo from "../data/settings/seo.json";
 
 interface Props {
   title?: string;
@@ -15,6 +16,12 @@ const {
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${church.name}` : `${church.name}`;
+
+// 소유 확인 코드는 관리자 화면에 meta 태그 통째로 붙여 넣어도 되도록 content 값만 골라냅니다
+const verificationCode = (value = "") =>
+  (value.match(/content\s*=\s*["']([^"']+)["']/)?.[1] ?? value).trim();
+const googleVerification = verificationCode(seo.googleVerification);
+const naverVerification = verificationCode(seo.naverVerification);
 ---
 
 <!doctype html>
@@ -27,8 +34,8 @@ const pageTitle = title ? `${title} | ${church.name}` : `${church.name}`;
     <link rel="canonical" href={Astro.url.href} />
 
     <!-- 검색엔진 소유 확인용 코드 -->
-    <meta name="google-site-verification" content="y4_MVtdFMkPSFTJ-Fl6paLejo7sBuAeNsgUvn_akCaI" />
-    <meta name="naver-site-verification" content="fda07cd15d1a78c0196c3cfb71257668f6c0ca67" />
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {naverVerification && <meta name="naver-site-verification" content={naverVerification} />}
 
     <!-- 폰트 미리 불러오기 (본문 렌더링 지연 방지) -->
     <link
