@@ -38,7 +38,7 @@ Claude가 읽는 지침입니다. 배경 설명은 [PLAN.md](PLAN.md) 참고.
 - 관리자 로그인에는 Cloudflare "Variables and Secrets"에
   `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET` 등록이 필요하다. 로그인이
   503/Unexpected Error를 내면 이것부터 의심한다.
-- 방문자 카운터 KV는 아직 없다(`wrangler.jsonc`에 주석). 없어도 사이트는 동작한다.
+- 방문자 카운터 KV는 `VISITS`(id `ba4f8254…`)로 `wrangler.jsonc`에 연결돼 있다. 없어도 사이트는 동작한다.
 
 ## 공개 콘텐츠 방침 (반드시 준수)
 

@@ -44,8 +44,8 @@
 - [x] Cloudflare Workers 연결 (임시 주소 `osan-church.tsaosan9391.workers.dev`)
 - [x] GitHub OAuth 앱 등록, Cloudflare `GITHUB_CLIENT_ID`/`GITHUB_CLIENT_SECRET`
 - [x] 도메인 `tsaosan.org` → `SITE_URL` 교체
-- [ ] OAuth 앱 callback 주소를 `https://tsaosan.org/api/callback`으로 변경
-- [ ] 방문자 카운터용 KV 만들기 (`wrangler.jsonc` 주석 해제)
+- [x] OAuth 앱 callback 주소를 `https://tsaosan.org/api/callback`으로 변경
+- [x] 방문자 카운터용 KV 연결 (`VISITS`)
 - [ ] 문의 이메일
 - [ ] 우편번호, 사관 계급
 - [ ] 나머지 예배·모임 시간 (수요예배, 새벽기도, 교회학교 등)
