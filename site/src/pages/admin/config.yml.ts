@@ -71,6 +71,25 @@ collections:
             widget: string
             required: false
 
+      - name: seo
+        label: 검색엔진 등록
+        file: site/src/data/settings/seo.json
+        description: >-
+          구글 서치 콘솔·네이버 서치어드바이저에서 사이트 소유 확인용으로
+          주는 코드를 넣는 곳입니다. meta 태그를 통째로 붙여 넣어도 됩니다.
+          비워 두면 아무것도 표시되지 않습니다.
+        fields:
+          - label: 구글 소유 확인 코드
+            name: googleVerification
+            widget: string
+            required: false
+            hint: 구글 서치 콘솔 → HTML 태그 방식의 content 값
+          - label: 네이버 소유 확인 코드
+            name: naverVerification
+            widget: string
+            required: false
+            hint: 네이버 서치어드바이저 → HTML 태그 방식의 content 값
+
       - name: hero
         label: 메인 화면 배경 사진
         file: site/src/data/settings/hero.json
