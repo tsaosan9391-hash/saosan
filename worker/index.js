@@ -309,6 +309,21 @@ export default {
       return handleVideos(url);
     }
 
+    // ── 네이버 소유 확인 파일 ─────────────────────────────
+    // 정적 파일로 두면 Cloudflare 가 '.html' 을 뗀 주소로 넘겨 버려서
+    // 네이버 확인 로봇이 파일을 못 찾을 수 있습니다. 주소 그대로 내보냅니다.
+    if (/^\/naver[0-9a-f]+\.html$/.test(url.pathname)) {
+      const asset = await env.ASSETS.fetch(
+        new URL(url.pathname.replace(/\.html$/, ""), url.origin),
+      );
+      if (asset.ok) {
+        return new Response(asset.body, {
+          headers: { "Content-Type": "text/html; charset=utf-8" },
+        });
+      }
+      return asset;
+    }
+
     // ── 방문자 카운터 ─────────────────────────────────────
     if (url.pathname === "/api/visits") {
       return handleVisits(request, env);
