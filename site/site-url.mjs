@@ -12,13 +12,12 @@
  *    https://github.com/settings/developers → 해당 앱 →
  *    Authorization callback URL 을 "새주소/api/callback" 으로 수정
  */
-// TODO: 도메인이 아직 정해지지 않았습니다. Cloudflare 첫 배포 뒤 나오는
-//       workers.dev 주소(예: https://osan-church.<계정이름>.workers.dev)나
-//       새로 연결한 도메인으로 이 한 줄을 바꿔 주세요.
+// 도메인이 아직 정해지지 않아 Cloudflare workers.dev 임시 주소를 씁니다.
+// 새 도메인을 연결하면 이 한 줄을 바꿔 주세요.
 // GitHub Pages 미리보기로 만들 때는 워크플로가 SITE_URL_OVERRIDE 로 주소를 넘겨줍니다.
 // (.github/workflows/deploy-pages.yml)
 export const SITE_URL =
-  process.env.SITE_URL_OVERRIDE || "https://osan-church.workers.dev";
+  process.env.SITE_URL_OVERRIDE || "https://osan-church.tsaosan9391.workers.dev";
 
 /** GitHub 저장소 (관리자 화면이 글을 저장할 위치) */
 export const GITHUB_REPO = "tsaosan9391-hash/saosan";

@@ -13,7 +13,7 @@
 | 사이트 유형 | 정적 사이트 + Git 기반 CMS | 원본 구조 그대로 |
 | 연락처 공개 | 교회 대표전화 + 이메일 | 이메일 미정(비워 둠) |
 | 유튜브 | 채널 없음 → 영상 메뉴 숨김 | 채널 생기면 연결 |
-| 도메인 | 미정 — Cloudflare로 새로 구입 예정 | `site/site-url.mjs` |
+| 도메인 | 미정 — Cloudflare로 새로 구입 예정. 그때까지 `https://osan-church.tsaosan9391.workers.dev` | `site/site-url.mjs` |
 | 예배 시간 | 주보로 확인된 것만 게재 | 나머지는 관리자 화면에서 추가 |
 
 ## 2. 교회 기본 정보 (주보 기준)
@@ -41,7 +41,9 @@
 
 ## 4. 아직 채워야 할 것
 
-- [ ] 도메인 결정 → `SITE_URL` 교체, GitHub OAuth 앱 callback 주소 등록
+- [x] Cloudflare Workers 연결 (임시 주소 `osan-church.tsaosan9391.workers.dev`)
+- [ ] GitHub OAuth 앱 callback 주소 등록 (`<주소>/api/callback`)
+- [ ] 도메인 결정 → `SITE_URL` 교체, OAuth callback 주소 변경
 - [ ] Cloudflare Variables and Secrets: `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`
 - [ ] 방문자 카운터용 KV 만들기 (`wrangler.jsonc` 주석 해제)
 - [ ] 문의 이메일
