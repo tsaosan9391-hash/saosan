@@ -1,0 +1,60 @@
+# GitHub Pages 미리보기 배포
+#
+# 도메인과 Cloudflare 연결 전까지, main 에 올라온 내용을 바로 확인할 수 있도록
+# https://tsaosan9391-hash.github.io/saosan/ 에 올립니다.
+#
+# ⚠️ 미리보기에서는 관리자 화면(/admin) 로그인과 방문자 수가 동작하지 않습니다.
+#    (Cloudflare worker 가 맡는 기능이라서입니다)
+#
+# 처음 한 번: 저장소 Settings → Pages → Build and deployment → Source 를
+#            "GitHub Actions" 로 바꿔 주세요.
+name: GitHub Pages 미리보기
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL_OVERRIDE: https://tsaosan9391-hash.github.io/saosan
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 도구 설치
+        run: npm ci --no-audit --no-fund
+
+      - name: 홈페이지 만들기
+        run: npm run build
+
+      - name: 주소 앞에 /saosan 붙이기
+        run: node scripts/rebase-for-pages.mjs site/dist /saosan
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
