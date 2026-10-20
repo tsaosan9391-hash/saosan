@@ -28,10 +28,9 @@
     "enabled": true
   },
   // 방문자 카운터 값을 저장하는 KV 네임스페이스.
-  // 아직 만들지 않았습니다. 없으면 방문자 수만 숨겨지고 나머지는 정상 동작합니다.
-  // Cloudflare 대시보드 → Storage & Databases → KV 에서 하나 만든 뒤
-  // 아래 주석을 풀고 id 를 넣어 주세요.
-  // "kv_namespaces": [
-  //   { "binding": "VISITS", "id": "여기에-KV-id" }
-  // ]
+  // (Cloudflare 대시보드 → Storage & Databases → Workers KV 의 'VISITS')
+  // 없으면 방문자 수만 숨겨지고 나머지는 정상 동작합니다.
+  "kv_namespaces": [
+    { "binding": "VISITS", "id": "ba4f825424514fd58ad0993c72904f39" }
+  ]
 }
