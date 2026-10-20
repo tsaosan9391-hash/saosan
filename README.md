@@ -1,4 +1,6 @@
-# 구세군 대구사랑교회 홈페이지
+# 구세군오산교회 홈페이지
+
+> 구세군 대구사랑교회 홈페이지(2026)를 포크해 오산교회용으로 바꾼 저장소입니다.
 
 정적 사이트 + 깃 기반 관리자 화면. 서버 없이 운영되며 호스팅 비용이 들지 않습니다.
 
@@ -10,7 +12,7 @@
 ## 폴더 구조
 
 ```
-daegu-sarang-church/
+saosan/
 ├─ PLAN.md              기획 문서 (결정 사항·자료 정리)
 ├─ 자료/                 원본 자료 (주보, 로고, 폰트)
 └─ site/                홈페이지 본체
@@ -41,7 +43,8 @@ npm --prefix site run dev
 
 ### 예배 시간, 주소, 전화번호가 바뀌었을 때
 
-`site/src/data/church.ts` **한 곳만** 고치면 모든 페이지에 반영됩니다.
+관리자 화면(`/admin`) → 사이트 설정에서 고칩니다.
+(파일로는 `site/src/data/settings/*.json`, 기본값은 `site/src/data/church.ts`)
 
 ### 공지사항 올리기
 
@@ -146,7 +149,7 @@ node scripts/update-video-cache.mjs
 `site/site-url.mjs` 의 `SITE_URL` 을 새 주소로 바꾸고 커밋합니다.
 
 ```js
-export const SITE_URL = "https://daegusarang.kr";
+export const SITE_URL = "https://구세군오산교회.kr";
 ```
 
 이 한 줄이 아래 세 곳에 자동 반영됩니다.

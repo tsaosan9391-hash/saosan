@@ -1,64 +1,7 @@
 {
   "photos": [
-    {
-      "src": "/images/uploads/_TGK8478.JPG",
-      "posX": 50,
-      "posY": 100,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/_TGK7464.JPG",
-      "posX": 50,
-      "posY": 100,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/_TGK0729.JPG",
-      "posX": 50,
-      "posY": 95,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/_TGK3932.jpg",
-      "posX": 50,
-      "posY": 93,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/DSC00250.jpg",
-      "posX": 50,
-      "posY": 86,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/DSC00477.jpg",
-      "posX": 50,
-      "posY": 93,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/DSC03444.JPG",
-      "posX": 50,
-      "posY": 57,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/DJI_0254.MOV_20260510_190030.423.jpg",
-      "posX": 50,
-      "posY": 31,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/_TGK8201.JPG",
-      "posX": 50,
-      "posY": 24,
-      "zoom": null
-    },
-    {
-      "src": "/images/uploads/260717-18 대구사랑 영문학생대회2166.JPG",
-      "posX": 50,
-      "posY": 70,
-      "zoom": null
-    }
+    { "src": "/images/uploads/추수감사주일.jpg", "posX": 50, "posY": 55, "zoom": null },
+    { "src": "/images/uploads/2026-여름성경학교.jpg", "posX": 50, "posY": 60, "zoom": null },
+    { "src": "/images/uploads/2026-교제모임.jpg", "posX": 50, "posY": 50, "zoom": null }
   ]
 }

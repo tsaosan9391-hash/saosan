@@ -5,15 +5,18 @@
  * 사이트 설정과 관리자 로그인 설정이 모두 이 값을 가져다 씁니다.
  *
  * 예) 자체 도메인을 연결했다면
- *     export const SITE_URL = "https://daegusarang.kr";
+ *     export const SITE_URL = "https://구세군오산교회.kr";
  *
  * ⚠️ 끝에 슬래시(/)를 붙이지 마세요.
  * ⚠️ 이 값을 바꾼 뒤에는 GitHub 앱의 callback 주소도 함께 바꿔야 합니다.
  *    https://github.com/settings/developers → 해당 앱 →
  *    Authorization callback URL 을 "새주소/api/callback" 으로 수정
  */
-export const SITE_URL = "https://구세군대구사랑교회.kr";
+// TODO: 도메인이 아직 정해지지 않았습니다. Cloudflare 첫 배포 뒤 나오는
+//       workers.dev 주소(예: https://osan-church.<계정이름>.workers.dev)나
+//       새로 연결한 도메인으로 이 한 줄을 바꿔 주세요.
+export const SITE_URL = "https://osan-church.workers.dev";
 
 /** GitHub 저장소 (관리자 화면이 글을 저장할 위치) */
-export const GITHUB_REPO = "sarmydglove/daegu-sarang-church";
+export const GITHUB_REPO = "tsaosan9391-hash/saosan";
 export const GITHUB_BRANCH = "main";

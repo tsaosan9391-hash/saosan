@@ -6,8 +6,8 @@ import {
   mainServices,
   prayerServices,
   visions,
-  buildingConcept,
   intro,
+  fullAddress,
   heroPhotos,
   videoDisplay,
 } from "../data/church";
@@ -54,7 +54,7 @@ const latestGallery = galleries[0];
           <source srcset="/images/hero-1600.webp" type="image/webp" />
           <img
             src="/images/hero-1600.jpg"
-            alt="구세군 대구사랑교회 신축 성전 조감도"
+            alt={`${church.name} 예배 모습`}
             width="2400"
             height="1350"
             fetchpriority="high"
@@ -64,7 +64,7 @@ const latestGallery = galleries[0];
       )
     }
 
-    <!-- 밝은 조감도 위에 흰 글씨를 얹기 위한 그라데이션 -->
+    <!-- 밝은 사진 위에 흰 글씨를 얹기 위한 그라데이션 -->
     <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
 
     <div class="relative mx-auto max-w-6xl px-5 py-24 md:py-32 lg:py-40">
@@ -78,10 +78,8 @@ const latestGallery = galleries[0];
           마음은 하나님께<br />손길은 이웃에게
         </h1>
         <p class="mt-7 text-lg leading-relaxed text-white/80 sm:text-xl">
-          외형적인 성장보다, 잃어버린 영혼의 생명이 살아나는<br
-            class="hidden sm:block"
-          />
-          진정한 부흥을 꿈꾸는 교회입니다.
+          모든 세대가 함께 예배하며,<br class="hidden sm:block" />
+          영혼을 살리는 교회입니다.
         </p>
 
         <div class="mt-10 flex flex-wrap gap-3">
@@ -125,22 +123,24 @@ const latestGallery = galleries[0];
         }
       </div>
 
-      <div class="mt-6 flex flex-wrap gap-x-10 gap-y-3 rounded-xl bg-sa-navy px-7 py-5">
-        {
-          prayerServices.map((s) => (
-            <p class="text-white/85">
-              <span class="font-bold text-sa-gold">{s.name}</span>
-              <span class="ml-3">{s.time}</span>
-            </p>
-          ))
-        }
-      </div>
+      {
+        prayerServices.length > 0 && (
+          <div class="mt-6 flex flex-wrap gap-x-10 gap-y-3 rounded-xl bg-sa-navy px-7 py-5">
+            {prayerServices.map((s) => (
+              <p class="text-white/85">
+                <span class="font-bold text-sa-gold">{s.name}</span>
+                <span class="ml-3">{s.time}</span>
+              </p>
+            ))}
+          </div>
+        )
+      }
 
       <a
         href="/worship"
         class="mt-8 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
       >
-        교회학교 · 제자훈련 등 전체 모임 보기
+        전체 예배와 모임 보기
         <span aria-hidden="true">→</span>
       </a>
     </div>
@@ -219,46 +219,6 @@ const latestGallery = galleries[0];
       )
   }
 
-  {/* ─── 교회 건축 ─────────────────────────────────────── */}
-  <section class="bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="grid items-center gap-12 lg:grid-cols-2">
-        <div>
-          <p class="eyebrow">교회 건축</p>
-          <h2 class="mt-4 text-3xl font-bold leading-snug sm:text-4xl">
-            {buildingConcept}
-          </h2>
-          <p class="mt-6 leading-relaxed text-sa-muted">
-            우리 교회는 새 성전을 준비하고 있습니다. 건축이 하나님의 계획과
-            방법대로, 하나님의 인도하심 가운데 반석과 같이 견고하고 아름답게
-            세워질 수 있도록 함께 기도해 주시기 바랍니다.
-          </p>
-          <a
-            href="/ministry"
-            class="mt-8 inline-flex items-center gap-2 rounded-md bg-sa-navy px-7 py-3.5 font-bold text-white transition-colors hover:bg-sa-navy-dark"
-          >
-            건축 이야기 보기
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <figure class="overflow-hidden rounded-xl border border-sa-line">
-          <picture>
-            <source srcset="/images/build-1800.webp" type="image/webp" />
-            <img
-              src="/images/build-1800.jpg"
-              alt="구세군 대구사랑교회 신축 성전 조감도"
-              width="1800"
-              height="1183"
-              loading="lazy"
-              class="w-full"
-            />
-          </picture>
-        </figure>
-      </div>
-    </div>
-  </section>
-
   {/* ─── 행사 사진 ─────────────────────────────────────── */}
   {
     latestGallery && (
@@ -332,11 +292,12 @@ const latestGallery = galleries[0];
   </section>
 
   {/* ─── 비전 ──────────────────────────────────────────── */}
+  {visions.length > 0 && (
   <section class="bg-sa-navy py-20 text-white md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="text-sm font-bold tracking-[0.1em] text-sa-gold">교회 비전</p>
       <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
-        우리가 함께 바라보는 여섯 가지
+        우리가 함께 바라보는 {visions.length}가지
       </h2>
 
       <ol class="mt-12 grid gap-x-10 gap-y-7 md:grid-cols-2">
@@ -353,6 +314,7 @@ const latestGallery = galleries[0];
       </ol>
     </div>
   </section>
+  )}
 
   {/* ─── 구세군 소개 + 오시는 길 ───────────────────────── */}
   <section class="bg-white py-20 md:py-24">
@@ -380,21 +342,34 @@ const latestGallery = galleries[0];
           <dl class="mt-7 space-y-5">
             <div>
               <dt class="text-sm font-bold text-sa-muted">주소</dt>
-              <dd class="mt-1 text-lg">
-                ({church.zipcode}) {church.address}
-              </dd>
+              <dd class="mt-1 text-lg">{fullAddress}</dd>
             </div>
-            <div>
-              <dt class="text-sm font-bold text-sa-muted">이메일</dt>
-              <dd class="mt-1">
-                <a
-                  href={`mailto:${church.email}`}
-                  class="text-lg font-bold text-sa-red hover:underline"
-                >
-                  {church.email}
-                </a>
-              </dd>
-            </div>
+            {church.phone && (
+              <div>
+                <dt class="text-sm font-bold text-sa-muted">대표전화</dt>
+                <dd class="mt-1">
+                  <a
+                    href={`tel:${church.phone}`}
+                    class="text-lg font-bold text-sa-red hover:underline"
+                  >
+                    {church.phone}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {church.email && (
+              <div>
+                <dt class="text-sm font-bold text-sa-muted">이메일</dt>
+                <dd class="mt-1">
+                  <a
+                    href={`mailto:${church.email}`}
+                    class="text-lg font-bold text-sa-red hover:underline"
+                  >
+                    {church.email}
+                  </a>
+                </dd>
+              </div>
+            )}
           </dl>
           <a
             href="/visit"

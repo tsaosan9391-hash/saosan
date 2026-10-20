@@ -126,7 +126,9 @@ function setupNoticePage(reason) {
  * 유튜브는 브라우저에서 직접 부르는 것을 막아두었기 때문에(CORS)
  * 워커가 대신 불러다 줍니다.
  * ─────────────────────────────────────────────────────────── */
-const CHANNEL_ID = "UCRHxTWlrl2b2bHXxKJOBGyQ";
+// 유튜브 채널을 아직 연결하지 않아 비워 두었습니다.
+// 채널이 생기면 site/src/data/church.ts 의 youtubeChannelId 와 같은 값을 넣어 주세요.
+const CHANNEL_ID = "";
 const FEED_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 
 function decodeEntities(s) {
@@ -147,10 +149,10 @@ function pickTag(block, tag) {
   return m ? decodeEntities(m[1].trim()) : "";
 }
 
-// 교회 이름은 '구세군 대구사랑교회' 하나로 통일합니다. 유튜브에 예전
-// 이름('구세군대구사랑영문')으로 올라간 영상이 섞여 있어 보여줄 때만 바꿉니다.
-// ('대구사랑영문' 만 바꾸면 '구세군대구사랑영문' 도 함께 처리됩니다)
-const unifyChurchName = (s) => s.replace(/대구사랑\s*영문/g, "대구사랑교회");
+// 교회 이름은 '구세군오산교회' 하나로 통일합니다. 유튜브에 영문(營門)
+// 표기('구세군오산영문')로 올라간 영상이 있으면 보여줄 때만 바꿉니다.
+// ('오산영문' 만 바꾸면 '구세군오산영문' 도 함께 처리됩니다)
+const unifyChurchName = (s) => s.replace(/오산\s*영문/g, "오산교회");
 
 function parseFeed(xml, limit) {
   return xml
@@ -176,6 +178,11 @@ function parseFeed(xml, limit) {
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function handleVideos(url) {
+  // 유튜브 채널을 아직 연결하지 않았으면 빈 목록을 돌려줍니다
+  if (!CHANNEL_ID) {
+    return Response.json({ videos: [] }, { headers: { "Cache-Control": "public, max-age=600" } });
+  }
+
   const limit = Math.min(Number(url.searchParams.get("limit")) || 12, 15);
   let lastError = "";
 

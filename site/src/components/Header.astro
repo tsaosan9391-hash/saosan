@@ -20,7 +20,7 @@ const { pathname } = Astro.url;
             THE SALVATION ARMY
           </span>
           <span class="block text-lg font-bold text-sa-ink">
-            구세군 대구사랑교회
+            {church.name}
           </span>
         </span>
       </a>
@@ -85,10 +85,10 @@ const { pathname } = Astro.url;
       }
       <li class="pt-3">
         <a
-          href={`mailto:${church.email}`}
+          href={`tel:${church.phone}`}
           class="block rounded-md bg-sa-red px-4 py-3 text-center font-bold text-white"
         >
-          이메일로 문의하기
+          전화로 문의하기
         </a>
       </li>
     </ul>

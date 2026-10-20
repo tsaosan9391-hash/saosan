@@ -13,7 +13,9 @@
  */
 import { writeFileSync, readFileSync, existsSync } from "node:fs";
 
-const CHANNEL_ID = "UCRHxTWlrl2b2bHXxKJOBGyQ";
+// 유튜브 채널을 아직 연결하지 않아 비워 두었습니다.
+// 채널이 생기면 site/src/data/church.ts 의 youtubeChannelId 와 같은 값을 넣어 주세요.
+const CHANNEL_ID = "";
 const OUT = "site/src/data/videos-cache.json";
 const FEED = `https://www.youtube.com/feeds/videos.xml?channel_id=${CHANNEL_ID}`;
 const RETRIES = 5;
@@ -36,9 +38,9 @@ function pick(block, tag) {
   return m ? decodeEntities(m[1].trim()) : "";
 }
 
-// 교회 이름은 '구세군 대구사랑교회' 하나로 통일합니다.
-// ('대구사랑영문' 만 바꾸면 '구세군대구사랑영문' 도 함께 처리됩니다)
-const unifyChurchName = (s) => s.replace(/대구사랑\s*영문/g, "대구사랑교회");
+// 교회 이름은 '구세군오산교회' 하나로 통일합니다.
+// ('오산영문' 만 바꾸면 '구세군오산영문' 도 함께 처리됩니다)
+const unifyChurchName = (s) => s.replace(/오산\s*영문/g, "오산교회");
 
 function parse(xml) {
   return xml
@@ -61,6 +63,12 @@ function parse(xml) {
       };
     })
     .filter((v) => v.id);
+}
+
+// 유튜브 채널을 아직 연결하지 않았으면 할 일이 없습니다
+if (!CHANNEL_ID) {
+  console.log("유튜브 채널이 설정되지 않아 건너뜁니다. (CHANNEL_ID 가 비어 있음)");
+  process.exit(0);
 }
 
 let videos = null;

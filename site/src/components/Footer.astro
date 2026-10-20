@@ -1,5 +1,5 @@
 ---
-import { church, navigation, mainServices, relatedSites } from "../data/church";
+import { church, navigation, mainServices, relatedSites, fullAddress } from "../data/church";
 ---
 
 <footer class="bg-sa-navy text-white/85">
@@ -17,14 +17,25 @@ import { church, navigation, mainServices, relatedSites } from "../data/church";
           </div>
         </div>
         <p class="mt-5 text-sm leading-relaxed text-white/70">
-          ({church.zipcode}) {church.address}
+          {fullAddress}
         </p>
-        <p class="mt-2 text-sm text-white/70">
-          이메일
-          <a href={`mailto:${church.email}`} class="font-bold text-white hover:underline">
-            {church.email}
-          </a>
-        </p>
+        {church.phone && (
+          <p class="mt-2 text-sm text-white/70">
+            대표전화
+            <a href={`tel:${church.phone}`} class="font-bold text-white hover:underline">
+              {church.phone}
+            </a>
+          </p>
+        )}
+        {church.email && (
+          <p class="mt-2 text-sm text-white/70">
+            이메일
+            <a href={`mailto:${church.email}`} class="font-bold text-white hover:underline">
+              {church.email}
+            </a>
+          </p>
+        )}
+        {church.youtube && (
         <a
           href={church.youtube}
           target="_blank"
@@ -36,6 +47,7 @@ import { church, navigation, mainServices, relatedSites } from "../data/church";
           </svg>
           유튜브 채널
         </a>
+        )}
       </div>
 
       <!-- 예배 시간 -->
