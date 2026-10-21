@@ -381,7 +381,7 @@ export default {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
-            "User-Agent": "daegusarang-church-cms",
+            "User-Agent": "osan-church-cms",
           },
           body: JSON.stringify({
             client_id: env.GITHUB_CLIENT_ID,
