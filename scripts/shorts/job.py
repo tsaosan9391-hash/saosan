@@ -4,6 +4,7 @@
 shorts/request.json 의 mode 에 따라
   prepare : 설교 전체 받아쓰기 + 장면 사진 + 예시 쇼츠 내려받기
   clip    : 고른 구간(start~end)만 고화질로 받아 자막용 단어 시각까지 뽑기
+  audio   : 직접 올린 영상의 소리(shorts/input/audio.ogg)만 받아 단어 시각 뽑기
 결과는 shorts/output/ 에 저장합니다.
 """
 import json
@@ -129,4 +130,9 @@ elif REQ["mode"] == "clip":
     audio = WORK / "clip.wav"
     run(["ffmpeg", "-v", "error", "-y", "-i", clip, "-ac", "1", "-ar", "16000", audio])
     segs = transcribe(audio, "large-v3", words=True)
+    (OUT / "clip-words.json").write_text(json.dumps(segs, ensure_ascii=False, indent=1), encoding="utf-8")
+
+elif REQ["mode"] == "audio":
+    # 영상 파일은 저장소에 올리지 않고 소리만 올려 받아쓰기합니다
+    segs = transcribe(Path("shorts/input/audio.ogg"), "large-v3", words=True)
     (OUT / "clip-words.json").write_text(json.dumps(segs, ensure_ascii=False, indent=1), encoding="utf-8")

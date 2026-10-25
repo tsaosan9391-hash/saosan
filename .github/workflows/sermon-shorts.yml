@@ -8,7 +8,7 @@ name: 설교 쇼츠 재료 준비
 on:
   push:
     branches-ignore: [main]
-    paths: [shorts/request.json, scripts/shorts/job.py, .github/workflows/sermon-shorts.yml]
+    paths: [shorts/request.json, shorts/input/**, scripts/shorts/job.py, .github/workflows/sermon-shorts.yml]
   workflow_dispatch:
 
 permissions:
