@@ -74,6 +74,7 @@ const naverVerification = verificationCode(seo.naverVerification);
         "@type": "Church",
         name: church.name,
         alternateName: church.nameEn,
+        url: new URL("/", Astro.site).href,
         // 값이 비어 있는 항목은 JSON.stringify 가 undefined 로 빼 줍니다
         telephone: church.phone || undefined,
         email: church.email || undefined,
@@ -86,6 +87,23 @@ const naverVerification = verificationCode(seo.naverVerification);
         sameAs: [church.youtube, church.instagram].filter(Boolean),
       })}
     />
+
+    {/*
+      구글 검색 결과에서 주소 위에 도메인 대신 '구세군오산교회'라는 사이트 이름이
+      나오게 하는 표시입니다. 구글 안내에 따라 첫 화면에만 넣습니다.
+    */}
+    {Astro.url.pathname === "/" && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: church.name,
+          alternateName: [church.nameEn, "구세군 오산교회", "오산 구세군"],
+          url: new URL("/", Astro.site).href,
+        })}
+      />
+    )}
   </head>
   <body class="flex min-h-screen flex-col">
     <a
