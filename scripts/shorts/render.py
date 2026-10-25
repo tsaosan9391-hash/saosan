@@ -8,10 +8,10 @@
 재료: shorts/output/clip.mp4, shorts/output/clip-words.json (job.py 의 clip 결과)
 제목·성경 구절은 shorts/request.json 의 title(줄 목록)·verse 로 정합니다.
 
-화면 구성
-  위   : 교회 이름 띠 + 설교 핵심 문장(제목) + 성경 구절
-  가운데: 설교 영상 (뒤에는 같은 영상을 흐리게 깔아 빈 곳을 채움)
-  아래  : 말하는 대로 바뀌는 큰 자막 + 교회 방패 마크
+화면 구성 (보내 주신 예시 쇼츠 양식)
+  위   : 검은 띠에 굵은 제목 두 줄 — 첫 줄 주황, 둘째 줄 흰색
+  가운데: 설교자를 크게 확대한 영상, 오른쪽 위에 교회 방패 마크·이름
+  아래  : 영상 위에 겹치는 흰 자막 (말하는 대로 바뀜)
 """
 import json
 import subprocess
@@ -29,8 +29,10 @@ LOGO = ROOT / "site/public/images/shield-256.png"
 FONTS = Path.home() / ".fonts"
 
 W, H = 1080, 1920
-VIDEO_Y = 700  # 설교 영상 윗변 위치
-MAX_CHARS = 15  # 자막 한 줄 최대 글자 수
+VIDEO_Y = 410  # 설교 영상 윗변 위치 (위쪽은 제목 띠)
+VIDEO_H = 1340  # 설교 영상 높이 (아래쪽 남는 곳은 검은 띠)
+ZOOM_X = 0.5  # 영상을 좌우로 자를 때 기준 (0 왼쪽 ~ 0.5 가운데 ~ 1 오른쪽)
+MAX_CHARS = 14  # 자막 한 줄 최대 글자 수
 MAX_SECONDS = 2.8  # 자막 한 덩어리 최대 길이
 
 
@@ -81,8 +83,7 @@ def esc(text):
 def build_ass(duration):
     subs = json.loads((WORK / "subs.json").read_text(encoding="utf-8"))
     title = REQ.get("title", [])
-    verse = REQ.get("verse", "")
-    # 색은 ASS 형식(&HAABBGGRR). 빨강 #DA0E2C, 노랑 #FFD23F
+    # 색은 ASS 형식(&HAABBGGRR). 주황 #FF8A1C
     head = f"""[Script Info]
 ScriptType: v4.00+
 PlayResX: {W}
@@ -92,33 +93,30 @@ ScaledBorderAndShadow: yes
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Tag,Pretendard,40,&H00FFFFFF,&H00FFFFFF,&H002C0EDA,&H002C0EDA,-1,0,0,0,100,100,2,0,3,14,0,8,0,0,0,1
-Style: Title,Pretendard ExtraBold,86,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,-1,0,1,0,4,8,60,60,0,1
-Style: Verse,Pretendard SemiBold,42,&H003FD2FF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,0,0,1,0,3,8,60,60,0,1
-Style: Sub,Pretendard Black,76,&H00FFFFFF,&H00FFFFFF,&H00000000,&H96000000,-1,0,0,0,100,100,-1,0,1,7,4,8,50,50,0,1
-Style: Church,Pretendard Bold,40,&H00FFFFFF,&H00FFFFFF,&H00000000,&H64000000,-1,0,0,0,100,100,1,0,1,0,2,4,0,0,0,1
+Style: Title1,Pretendard Black,108,&H001C8AFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,-2,0,1,0,0,5,30,30,0,1
+Style: Title2,Pretendard Black,108,&H00FFFFFF,&H00FFFFFF,&H00000000,&H00000000,-1,0,0,0,100,100,-2,0,1,0,0,5,30,30,0,1
+Style: Sub,Pretendard Medium,84,&H00FFFFFF,&H00FFFFFF,&H50000000,&H78000000,0,0,0,0,100,100,0,0,1,1.5,3,5,60,60,0,1
+Style: Mark,Pretendard Bold,30,&H00FFFFFF,&H00FFFFFF,&H00000000,&H78000000,-1,0,0,0,100,100,3,0,1,0,2,4,0,0,0,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     end = ts(duration)
-    lines = [
-        f"Dialogue: 0,{ts(0)},{end},Tag,,0,0,0,,{{\\pos({W // 2},190)}}{CHURCH} · 오늘의 말씀",
-    ]
-    y = 290
-    for t in title:
-        lines.append(f"Dialogue: 0,{ts(0)},{end},Title,,0,0,0,,{{\\pos({W // 2},{y})\\fad(300,0)}}{esc(t)}")
-        y += 104
-    if verse:
-        lines.append(f"Dialogue: 0,{ts(0)},{end},Verse,,0,0,0,,{{\\pos({W // 2},{y + 14})\\fad(300,0)}}{esc(verse)}")
+    lines = []
+    for i, t in enumerate(title[:2]):
+        # 제목이 화면 폭을 꽉 채우도록 글자 수에 맞춰 크기를 정합니다
+        size = min(140, int(1000 / max(len(t), 1) / 0.66))
+        lines.append(
+            f"Dialogue: 0,{ts(0)},{end},Title{i + 1},,0,0,0,,"
+            f"{{\\pos({W // 2},{[150, 300][i]})\\fs{size}}}{esc(t)}")
+    lines.append(f"Dialogue: 0,{ts(0)},{end},Mark,,0,0,0,,{{\\pos({W - 290},{VIDEO_Y + 58})}}{CHURCH}")
 
-    sub_y = VIDEO_Y + W * 9 // 16 + 110
+    sub_y = VIDEO_Y + VIDEO_H - 230
     for s in subs:
         lines.append(
             f"Dialogue: 1,{ts(s['start'])},{ts(s['end'])},Sub,,0,0,0,,"
-            f"{{\\pos({W // 2},{sub_y})\\fad(80,0)}}{esc(s['text'])}"
+            f"{{\\pos({W // 2},{sub_y})}}{esc(s['text'])}"
         )
-    lines.append(f"Dialogue: 0,{ts(0)},{end},Church,,0,0,0,,{{\\pos({W // 2 - 106},{H - 150})}}{CHURCH}")
     path = WORK / "short.ass"
     path.write_text(head + "\n".join(lines) + "\n", encoding="utf-8")
     return path
@@ -131,14 +129,12 @@ def render():
         capture_output=True, text=True, check=True).stdout)
     ass = build_ass(duration)
     fade = max(duration - 0.6, 0)
-    fg_h = W * 9 // 16
     graph = (
-        f"[0:v]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
-        f"boxblur=40:4,eq=brightness=-0.32:saturation=0.8[bg];"
-        f"[0:v]scale={W}:{fg_h}:force_original_aspect_ratio=increase,crop={W}:{fg_h}[fg];"
-        f"[bg][fg]overlay=0:{VIDEO_Y}[v1];"
-        f"[1:v]scale=88:-1[logo];"
-        f"[v1][logo]overlay={W // 2 - 214}:{H - 150 - 46}[v2];"
+        f"color=black:s={W}x{H}:r=30[bg];"
+        f"[0:v]scale=-2:{VIDEO_H},crop={W}:{VIDEO_H}:(iw-{W})*{ZOOM_X}:0[fg];"
+        f"[bg][fg]overlay=0:{VIDEO_Y}:shortest=1[v1];"
+        f"[1:v]scale=46:-1[logo];"
+        f"[v1][logo]overlay={W - 350}:{VIDEO_Y + 32}[v2];"
         f"[v2]ass={ass}:fontsdir={FONTS},fps=30,format=yuv420p,"
         f"fade=t=in:d=0.3,fade=t=out:st={fade}:d=0.6[v];"
         f"[0:a]loudnorm=I=-14:TP=-1.5:LRA=11,afade=t=in:d=0.2,afade=t=out:st={fade}:d=0.6[a]"
