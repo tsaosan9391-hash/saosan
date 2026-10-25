@@ -71,9 +71,18 @@ def download(video_id, dest, fmt, extra=(), required=True):
 def transcribe(audio, model_name, words):
     from faster_whisper import WhisperModel
 
+    import numpy as np
+
+    # 소리는 ffmpeg 로 직접 읽어 넘깁니다 (faster-whisper 내장 읽기는
+    # 함께 깔리는 PyAV 판과 맞지 않아 멈추는 일이 있습니다)
+    pcm = subprocess.run(
+        ["ffmpeg", "-v", "error", "-i", str(audio), "-f", "s16le", "-ac", "1", "-ar", "16000", "-"],
+        capture_output=True, check=True).stdout
+    samples = np.frombuffer(pcm, np.int16).astype(np.float32) / 32768.0
+
     model = WhisperModel(model_name, device="cpu", compute_type="int8")
     segments, _ = model.transcribe(
-        str(audio), language="ko", word_timestamps=words, vad_filter=True,
+        samples, language="ko", word_timestamps=words, vad_filter=True,
         beam_size=5,
     )
     result = []
