@@ -129,9 +129,13 @@ def render():
         capture_output=True, text=True, check=True).stdout)
     ass = build_ass(duration)
     fade = max(duration - 0.6, 0)
+    # 세로로 찍은 영상은 위아래가 남습니다. 어디서부터 보여 줄지(화면 픽셀)
+    # request.json 의 crop_top 으로 정하고, 없으면 가운데를 씁니다.
+    crop_top = REQ.get("crop_top", f"(ih-{VIDEO_H})/2")
     graph = (
         f"color=black:s={W}x{H}:r=30[bg];"
-        f"[0:v]scale=-2:{VIDEO_H},crop={W}:{VIDEO_H}:(iw-{W})*{ZOOM_X}:0[fg];"
+        f"[0:v]scale={W}:{VIDEO_H}:force_original_aspect_ratio=increase,"
+        f"crop={W}:{VIDEO_H}:(iw-{W})*{ZOOM_X}:{crop_top}[fg];"
         f"[bg][fg]overlay=0:{VIDEO_Y}:shortest=1[v1];"
         f"[1:v]scale=46:-1[logo];"
         f"[v1][logo]overlay={W - 350}:{VIDEO_Y + 32}[v2];"
