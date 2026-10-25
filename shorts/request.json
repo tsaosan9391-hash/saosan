@@ -1,3 +1,9 @@
 {
-  "mode": "audio"
+  "mode": "done",
+  "title": [
+    "말씀 앞에 비친 내 마음",
+    "이기심과 미움까지 보입니다"
+  ],
+  "crop_top": 30,
+  "sub_bottom": 110
 }

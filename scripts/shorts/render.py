@@ -111,7 +111,7 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
             f"{{\\pos({W // 2},{[150, 300][i]})\\fs{size}}}{esc(t)}")
     lines.append(f"Dialogue: 0,{ts(0)},{end},Mark,,0,0,0,,{{\\pos({W - 290},{VIDEO_Y + 58})}}{CHURCH}")
 
-    sub_y = VIDEO_Y + VIDEO_H - 230
+    sub_y = VIDEO_Y + VIDEO_H - REQ.get("sub_bottom", 230)  # 자막 높이 (영상 아랫변에서 위로)
     for s in subs:
         lines.append(
             f"Dialogue: 1,{ts(s['start'])},{ts(s['end'])},Sub,,0,0,0,,"
