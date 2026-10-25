@@ -7,6 +7,7 @@ shorts/request.json 의 mode 에 따라
 결과는 shorts/output/ 에 저장합니다.
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -26,16 +27,44 @@ def run(cmd):
     return subprocess.run(cmd, check=False).returncode
 
 
-def download(video_id, dest, fmt, extra=()):
+# 유튜브가 GitHub 서버의 요청을 '로봇'으로 보고 막는 경우가 많아,
+# 저장소 비밀값 YT_COOKIES(유튜브 로그인 쿠키)가 있으면 함께 보냅니다.
+COOKIES = []
+if os.environ.get("YT_COOKIES", "").strip():
+    cookie_file = WORK / "cookies.txt"
+    cookie_file.write_text(os.environ["YT_COOKIES"].strip() + "\n", encoding="utf-8")
+    COOKIES = ["--cookies", str(cookie_file)]
+
+
+def download(video_id, dest, fmt, extra=(), required=True):
+    # 유튜브 대신 구글 드라이브 등에 올린 원본 파일 주소를 쓸 수도 있습니다
+    source = REQ.get("source_url") if video_id == REQ.get("video") else None
+    if source:
+        if "drive.google.com" in source:
+            cmd = ["gdown", "--fuzzy", source, "-O", str(dest)]
+        else:
+            cmd = ["curl", "-sSL", "-o", str(dest), source]
+        if run(cmd) != 0:
+            sys.exit("원본 파일을 내려받지 못했습니다")
+        if extra:  # 구간만 필요하면 잘라 냅니다
+            start, end = REQ["start"], REQ["end"]
+            full = WORK / "source-full.mp4"
+            Path(dest).rename(full)
+            run(["ffmpeg", "-v", "error", "-y", "-ss", str(start), "-to", str(end),
+                 "-i", full, "-c:v", "libx264", "-crf", "18", "-c:a", "aac", dest])
+        return True
     url = f"https://www.youtube.com/watch?v={video_id}"
     for client in CLIENTS:
         cmd = ["yt-dlp", "-f", fmt, "--merge-output-format", "mp4",
-               "-o", str(dest), "--force-overwrites", *extra]
+               "-o", str(dest), "--force-overwrites", *COOKIES, *extra]
         if client:
             cmd += ["--extractor-args", f"youtube:player_client={client}"]
         if run(cmd + [url]) == 0 and Path(dest).exists():
-            return
-    sys.exit(f"영상 {video_id} 를 내려받지 못했습니다")
+            return True
+    if required:
+        sys.exit(f"영상 {video_id} 를 내려받지 못했습니다")
+    print(f"영상 {video_id} 를 내려받지 못해 건너뜁니다", flush=True)
+    return False
 
 
 def transcribe(audio, model_name, words):
@@ -65,9 +94,11 @@ def fmt_time(t):
 
 if REQ["mode"] == "prepare":
     # 예시 쇼츠: 짧으니 통째로 저장해 양식을 살펴봅니다
-    download(REQ["reference"], OUT / "reference.mp4", "bv*[height<=1920]+ba/b")
-    run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json",
-         OUT / "reference.mp4"])
+    # (예시는 없어도 진행합니다)
+    if download(REQ["reference"], OUT / "reference.mp4", "bv*[height<=1920]+ba/b",
+                required=False):
+        run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json",
+             OUT / "reference.mp4"])
 
     sermon = WORK / "sermon.mp4"
     download(REQ["video"], sermon, "bv*[height<=720]+ba/b[height<=720]/b")

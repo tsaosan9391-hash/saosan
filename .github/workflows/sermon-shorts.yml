@@ -8,7 +8,7 @@ name: 설교 쇼츠 재료 준비
 on:
   push:
     branches-ignore: [main]
-    paths: [shorts/request.json]
+    paths: [shorts/request.json, scripts/shorts/job.py, .github/workflows/sermon-shorts.yml]
   workflow_dispatch:
 
 permissions:
@@ -37,9 +37,15 @@ jobs:
       - name: 도구 설치
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-          pip install -q "yt-dlp[default]" faster-whisper
+          pip install -q "yt-dlp[default]" faster-whisper gdown bgutil-ytdlp-pot-provider
+
+      # 유튜브의 '로봇 확인'을 통과하는 데 필요한 인증 토큰(PO 토큰)을 만들어 주는 도우미
+      - name: 토큰 도우미 띄우기
+        run: docker run -d --name bgutil -p 4416:4416 --init brainicism/bgutil-ytdlp-pot-provider
 
       - name: 영상 받기·받아쓰기
+        env:
+          YT_COOKIES: ${{ secrets.YT_COOKIES }}
         run: python scripts/shorts/job.py
 
       - name: 결과 올리기
