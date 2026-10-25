@@ -95,7 +95,7 @@ def fmt_time(t):
 if REQ["mode"] == "prepare":
     # 예시 쇼츠: 짧으니 통째로 저장해 양식을 살펴봅니다
     # (예시는 없어도 진행합니다)
-    if download(REQ["reference"], OUT / "reference.mp4", "bv*[height<=1920]+ba/b",
+    if REQ.get("reference") and download(REQ["reference"], OUT / "reference.mp4", "bv*[height<=1920]+ba/b",
                 required=False):
         run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json",
              OUT / "reference.mp4"])
