@@ -1,6 +1,15 @@
 {
   "videos": [
     {
+      "id": "m87pCofDUCU",
+      "title": "[2024.08.18] 구세군오산교회 주일 성결회 실시간 예배",
+      "published": "2024-08-18T01:08:12+00:00",
+      "thumbnail": "https://i2.ytimg.com/vi/m87pCofDUCU/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=m87pCofDUCU",
+      "isShort": false,
+      "category": "event"
+    },
+    {
       "id": "iapngaO4mTE",
       "title": "아무것도 두려워 말라 #예배 #찬양 #구세군오산교회 #salvation #salvationarmy #korea",
       "published": "2026-09-13T12:26:25+00:00",
@@ -123,15 +132,6 @@
       "published": "2025-08-16T00:30:13+00:00",
       "thumbnail": "https://i2.ytimg.com/vi/uttO_Py0M80/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=uttO_Py0M80",
-      "isShort": false,
-      "category": "event"
-    },
-    {
-      "id": "XUO2e-UWys8",
-      "title": "구세군 긴급구호",
-      "published": "2025-07-26T12:30:30+00:00",
-      "thumbnail": "https://i1.ytimg.com/vi/XUO2e-UWys8/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=XUO2e-UWys8",
       "isShort": false,
       "category": "event"
     }
