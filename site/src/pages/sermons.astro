@@ -27,7 +27,7 @@ const eventVideos = allVideos.filter((v) => v.category === "event");
 
 <Base
   title="교회영상"
-  description={`${church.name} 교회영상 — 예배 말씀부터 행사 스케치까지 영상으로 다시 보실 수 있습니다.`}
+  description={`${church.name} 교회영상 — 유튜브에 올린 예배·찬양 영상을 다시 보실 수 있습니다.`}
 >
   {/* ─── 설교 영상 (설교 영상이 있을 때만 보여 줍니다) ───── */}
   {sermonVideos.length > 0 && videoDisplay.pageSermonCount > 0 && (
@@ -55,11 +55,10 @@ const eventVideos = allVideos.filter((v) => v.category === "event");
     eventVideos.length > 0 && videoDisplay.pageEventCount > 0 && (
       <section class="bg-sa-surface py-20 md:py-24">
         <div class="mx-auto max-w-6xl px-5">
-          <div class="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p class="eyebrow">유튜브</p>
-              <h1 class="mt-4 text-2xl font-bold sm:text-3xl">행사 스케치</h1>
-            </div>
+          {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
+          <h1 class="sr-only">교회영상</h1>
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <p class="eyebrow">유튜브</p>
             {church.youtube && (
               <a
                 href={church.youtube}
