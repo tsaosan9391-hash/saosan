@@ -204,7 +204,8 @@ const terms = [
     )
   }
 
-  {/* ─── 우리 교회 ──────────────────────────────────── */}
+  {/* ─── 우리 교회 (관리자 화면 '우리 교회 소개'가 비어 있으면 숨김) ─── */}
+  {intro.ourChurch && (
   <section class="bg-sa-surface py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="eyebrow">우리 교회</p>
@@ -216,6 +217,7 @@ const terms = [
       </p>
     </div>
   </section>
+  )}
 
   {/* ─── 2026 군국표어 ─────────────────────────────────── */}
   <section class="bg-sa-surface py-20 md:py-24">
