@@ -165,6 +165,7 @@ collections:
               - { label: 예배 이름, name: name, widget: string }
               - { label: 요일, name: day, widget: string, hint: "예) 주일, 수요일" }
               - { label: 시간, name: time, widget: string, hint: "예) 오전 11:00" }
+              - { label: 장소, name: place, widget: string, required: false, hint: "예) 본당, 1층 — 비워 두면 표시하지 않습니다" }
 
           - label: 기도회
             name: prayerServices

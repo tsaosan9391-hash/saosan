@@ -23,7 +23,7 @@ import videoSettings from "./settings/videos.json";
 import worshipPhotosSettings from "./settings/worship-photos.json";
 
 type Service = { name: string; time: string; photo?: string; video?: string };
-type MainService = Service & { day: string };
+type MainService = Service & { day: string; place?: string };
 type Officer = { role: string; rank: string; name: string };
 type Ministry = { title: string; desc: string; photo?: string };
 type HeritagePhoto = { src: string; caption: string };
