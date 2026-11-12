@@ -348,6 +348,13 @@ collections:
             value_type: int
             min: 0
             default: 12
+          - label: 숨길 영상
+            name: hiddenVideos
+            widget: list
+            required: false
+            hint: >-
+              유튜브 채널에는 두되 홈페이지에서는 빼고 싶은 영상의 주소를
+              한 줄에 하나씩 넣어 주세요. (예: https://www.youtube.com/watch?v=...)
 
   # ── 공지사항 ────────────────────────────────────────────
   - name: notices

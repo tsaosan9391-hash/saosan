@@ -7,6 +7,7 @@
  */
 
 import videosCache from "../data/videos-cache.json";
+import videoSettings from "../data/settings/videos.json";
 
 export type Video = {
   id: string;
@@ -195,11 +196,21 @@ export function mergeVideos(
   registered: readonly Video[],
 ): Video[] {
   const registeredIds = new Set(registered.map((v) => v.id));
-  return [...registered, ...feed.filter((v) => !registeredIds.has(v.id))].sort(
+  return [...registered, ...feed.filter((v) => !registeredIds.has(v.id))]
+    // 관리자 화면 '숨길 영상'에 넣은 영상은 어디에도 보여주지 않습니다
+    .filter((v) => !hiddenVideoIds.has(v.id))
+    .sort(
     (a, b) =>
       new Date(b.published).getTime() - new Date(a.published).getTime(),
   );
 }
+
+/** 관리자 화면 '숨길 영상'에 넣은 영상 번호. 유튜브 주소를 넣어도, 번호만 넣어도 됩니다. */
+const hiddenVideoIds = new Set(
+  ((videoSettings as { hiddenVideos?: string[] }).hiddenVideos ?? [])
+    .map((u) => extractVideoId(u) ?? u.trim())
+    .filter(Boolean),
+);
 
 /** 'YYYY.MM.DD' 형식으로 변환 */
 export function formatDate(iso: string): string {
