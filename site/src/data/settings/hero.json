@@ -1,9 +1,9 @@
 {
   "photos": [
     {
-      "src": "/images/uploads/2026-초대-단체사진.jpg",
+      "src": "/images/uploads/2026-주일예배-설교-2.jpg",
       "posX": 50,
-      "posY": 50,
+      "posY": 45,
       "zoom": null
     },
     {
@@ -16,6 +16,12 @@
       "src": "/images/uploads/2026-야외-단체사진.jpg",
       "posX": 50,
       "posY": 60,
+      "zoom": null
+    },
+    {
+      "src": "/images/uploads/2026-브라스밴드-코넷.jpg",
+      "posX": 50,
+      "posY": 55,
       "zoom": null
     },
     {
