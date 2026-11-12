@@ -311,7 +311,8 @@ const navLabels = { ...DEFAULTS.navLabels, ...navSettings };
  */
 export const navigation = [
   { label: navLabels.about, href: "/about" },
-  { label: navLabels.worship, href: "/worship" },
+  // '예배와 모임'은 메뉴에서 뺐습니다. 페이지(/worship)는 그대로 있고,
+  // 첫 화면 '전체 예배와 모임 보기'·오시는 길 페이지의 링크로 들어갈 수 있습니다.
   // 유튜브 채널이 없으면 '교회영상' 메뉴를 숨깁니다
   ...(church.youtubeChannelId
     ? [{ label: navLabels.sermons, href: "/sermons" }]
