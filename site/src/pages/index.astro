@@ -95,8 +95,74 @@ const latestGallery = galleries[0];
     </div>
   </section>
 
+  {/* ─── 구세군 소개 + 오시는 길 ───────────────────────── */}
+  <section class="bg-white py-20 md:py-24">
+    <div class="mx-auto max-w-6xl px-5">
+      <div class="grid gap-14 lg:grid-cols-2">
+        <div>
+          <p class="eyebrow">구세군이란</p>
+          <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
+            1865년 영국 런던에서 시작된 교단입니다
+          </h2>
+          <p class="mt-6 leading-relaxed text-sa-muted">
+            {intro.salvationArmy}
+          </p>
+          <a
+            href="/about"
+            class="mt-7 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
+          >
+            교회 소개 자세히 보기 <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <div class="rounded-xl bg-sa-surface p-9">
+          <p class="eyebrow">오시는 길</p>
+          <h2 class="mt-4 text-2xl font-bold">{church.name}</h2>
+          <dl class="mt-7 space-y-5">
+            <div>
+              <dt class="text-sm font-bold text-sa-muted">주소</dt>
+              <dd class="mt-1 text-lg">{fullAddress}</dd>
+            </div>
+            {church.phone && (
+              <div>
+                <dt class="text-sm font-bold text-sa-muted">대표전화</dt>
+                <dd class="mt-1">
+                  <a
+                    href={`tel:${church.phone}`}
+                    class="text-lg font-bold text-sa-red hover:underline"
+                  >
+                    {church.phone}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {church.email && (
+              <div>
+                <dt class="text-sm font-bold text-sa-muted">이메일</dt>
+                <dd class="mt-1">
+                  <a
+                    href={`mailto:${church.email}`}
+                    class="text-lg font-bold text-sa-red hover:underline"
+                  >
+                    {church.email}
+                  </a>
+                </dd>
+              </div>
+            )}
+          </dl>
+          <a
+            href="/visit"
+            class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sa-red px-6 py-3.5 font-bold text-white transition-colors hover:bg-sa-red-dark"
+          >
+            지도로 위치 확인하기
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   {/* ─── 예배 시간 ─────────────────────────────────────── */}
-  <section id="worship" class="scroll-mt-24 bg-white py-20 md:py-24">
+  <section id="worship" class="scroll-mt-24 bg-white pb-20 md:pb-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="eyebrow">예배 안내</p>
 
@@ -165,19 +231,14 @@ const latestGallery = galleries[0];
       )
   }
 
-  {/* ─── 찬양 ─────────────────────────────────────────── */}
+  {/* ─── 유튜브 (행사·찬양 영상) ──────────────────────────── */}
   {
     videoDisplay.homeEventCount > 0 &&
       videos.some((v) => v.category === "event") && (
         <section class="bg-white py-20 md:py-24">
           <div class="mx-auto max-w-6xl px-5">
-            <div class="flex flex-wrap items-end justify-between gap-4">
-              <div>
-                <p class="eyebrow">유튜브</p>
-                <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
-                  찬양
-                </h2>
-              </div>
+            <div class="flex flex-wrap items-center justify-between gap-4">
+              <p class="eyebrow">유튜브</p>
               <a
                 href="/sermons"
                 class="font-bold text-sa-red hover:underline"
@@ -306,70 +367,4 @@ const latestGallery = galleries[0];
     </div>
   </section>
   )}
-
-  {/* ─── 구세군 소개 + 오시는 길 ───────────────────────── */}
-  <section class="bg-white py-20 md:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <div class="grid gap-14 lg:grid-cols-2">
-        <div>
-          <p class="eyebrow">구세군이란</p>
-          <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
-            1865년 영국 런던에서 시작된 교단입니다
-          </h2>
-          <p class="mt-6 leading-relaxed text-sa-muted">
-            {intro.salvationArmy}
-          </p>
-          <a
-            href="/about"
-            class="mt-7 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
-          >
-            교회 소개 자세히 보기 <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="rounded-xl bg-sa-surface p-9">
-          <p class="eyebrow">오시는 길</p>
-          <h2 class="mt-4 text-2xl font-bold">{church.name}</h2>
-          <dl class="mt-7 space-y-5">
-            <div>
-              <dt class="text-sm font-bold text-sa-muted">주소</dt>
-              <dd class="mt-1 text-lg">{fullAddress}</dd>
-            </div>
-            {church.phone && (
-              <div>
-                <dt class="text-sm font-bold text-sa-muted">대표전화</dt>
-                <dd class="mt-1">
-                  <a
-                    href={`tel:${church.phone}`}
-                    class="text-lg font-bold text-sa-red hover:underline"
-                  >
-                    {church.phone}
-                  </a>
-                </dd>
-              </div>
-            )}
-            {church.email && (
-              <div>
-                <dt class="text-sm font-bold text-sa-muted">이메일</dt>
-                <dd class="mt-1">
-                  <a
-                    href={`mailto:${church.email}`}
-                    class="text-lg font-bold text-sa-red hover:underline"
-                  >
-                    {church.email}
-                  </a>
-                </dd>
-              </div>
-            )}
-          </dl>
-          <a
-            href="/visit"
-            class="mt-8 inline-flex w-full items-center justify-center gap-2 rounded-md bg-sa-red px-6 py-3.5 font-bold text-white transition-colors hover:bg-sa-red-dark"
-          >
-            지도로 위치 확인하기
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 </Base>
