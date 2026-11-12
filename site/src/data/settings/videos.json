@@ -2,5 +2,8 @@
   "homeSermonCount": 3,
   "homeEventCount": 3,
   "pageSermonCount": 3,
-  "pageEventCount": 3
+  "pageEventCount": 3,
+  "hiddenVideos": [
+    "https://www.youtube.com/watch?v=m87pCofDUCU"
+  ]
 }
