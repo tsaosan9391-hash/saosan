@@ -233,7 +233,10 @@ const latestGallery = galleries[0];
         {
           mainServices.map((s) => (
             <div class="rounded-xl border border-sa-line bg-sa-surface p-7 transition-colors hover:border-sa-red">
-              <p class="text-sm font-bold text-sa-red">{s.day}</p>
+              <p class="text-sm font-bold text-sa-red">
+                {s.day}
+                {s.place && <span class="font-medium text-sa-muted"> · {s.place}</span>}
+              </p>
               <h3 class="mt-2.5 text-xl font-bold">{s.name}</h3>
               <p class="mt-4 text-2xl font-bold text-sa-navy">{s.time}</p>
             </div>
