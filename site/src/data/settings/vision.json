@@ -1,8 +1,20 @@
 {
   "visions": [
-    "예배(Worship) — 하나님을 예배하는 자여",
-    "말씀(God's Word) — 말씀 위에 삶을 세우고",
-    "기도(Prayer) — 기도로 능력을 공급받아",
-    "선교(Mission) — 선교의 사명을 감당하라"
+    {
+      "title": "예배(Worship)",
+      "desc": "하나님을 예배하는 자여"
+    },
+    {
+      "title": "말씀(God's Word)",
+      "desc": "말씀 위에 삶을 세우고"
+    },
+    {
+      "title": "기도(Prayer)",
+      "desc": "기도로 능력을 공급받아"
+    },
+    {
+      "title": "선교(Mission)",
+      "desc": "선교의 사명을 감당하라"
+    }
   ]
 }

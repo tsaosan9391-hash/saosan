@@ -27,6 +27,7 @@ type MainService = Service & { day: string };
 type Officer = { role: string; rank: string; name: string };
 type Ministry = { title: string; desc: string; photo?: string };
 type HeritagePhoto = { src: string; caption: string };
+type Vision = { title: string; desc?: string };
 
 const DEFAULTS = {
   navLabels: {
@@ -50,7 +51,7 @@ const DEFAULTS = {
   prayerServices: [] as Service[],
   groups: [] as Service[],
   officers: [] as Officer[],
-  visions: [] as string[],
+  visions: [] as Vision[],
   heritagePhotos: [] as HeritagePhoto[],
   worshipPhotos: [] as string[],
   worshipWatermarkOpacity: 35,
@@ -119,8 +120,14 @@ export const groups = or(worshipTimes.groups, DEFAULTS.groups);
 /** 섬기는 사관 */
 export const officers = or(officersSettings.officers, DEFAULTS.officers);
 
-/** 교회 비전 */
-export const visions = or(visionSettings.visions, DEFAULTS.visions);
+/** 핵심 가치 — 예전 형식("제목 — 설명" 한 줄)으로 저장된 항목도 나눠서 받습니다 */
+export const visions: Vision[] = (
+  or(visionSettings.visions, DEFAULTS.visions) as (Vision | string)[]
+).map((v) => {
+  if (typeof v !== "string") return v;
+  const [title, ...rest] = v.split(" — ");
+  return { title, desc: rest.join(" — ") || undefined };
+});
 
 /** 지난 발자취 사진 — 교회 소개 페이지에 인사말과 함께 강조해 보여줍니다 */
 export const heritagePhotos = or(
