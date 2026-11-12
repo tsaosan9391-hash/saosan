@@ -77,11 +77,6 @@ const latestGallery = galleries[0];
         >
           마음은 하나님께<br />손길은 이웃에게
         </h1>
-        <p class="mt-7 text-lg leading-relaxed text-white/80 sm:text-xl">
-          모든 세대가 함께 예배하며,<br class="hidden sm:block" />
-          영혼을 살리는 교회입니다.
-        </p>
-
         <div class="mt-10 flex flex-wrap gap-3">
           <a
             href="#worship"
@@ -104,14 +99,8 @@ const latestGallery = galleries[0];
   <section id="worship" class="scroll-mt-24 bg-white py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="eyebrow">예배 안내</p>
-      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
-        언제든 오셔서 함께 예배드립니다
-      </h2>
-      <p class="mt-4 max-w-2xl text-sa-muted">
-        처음 오시는 분도 편하게 참석하실 수 있습니다. 준비하실 것은 없습니다.
-      </p>
 
-      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         {
           mainServices.map((s) => (
             <div class="rounded-xl border border-sa-line bg-sa-surface p-7 transition-colors hover:border-sa-red">
@@ -176,7 +165,7 @@ const latestGallery = galleries[0];
       )
   }
 
-  {/* ─── 최근 행사 스케치 ───────────────────────────────── */}
+  {/* ─── 찬양 ─────────────────────────────────────────── */}
   {
     videoDisplay.homeEventCount > 0 &&
       videos.some((v) => v.category === "event") && (
@@ -186,7 +175,7 @@ const latestGallery = galleries[0];
               <div>
                 <p class="eyebrow">유튜브</p>
                 <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
-                  최근 행사 스케치
+                  찬양
                 </h2>
               </div>
               <a
