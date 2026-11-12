@@ -161,8 +161,37 @@ const latestGallery = galleries[0];
     </div>
   </section>
 
+  {/* ─── 핵심 가치 ──────────────────────────────────────────── */}
+  {visions.length > 0 && (
+  <section class="bg-sa-navy py-20 text-white md:py-24">
+    <div class="mx-auto max-w-6xl px-5">
+      <h2 class="text-3xl font-bold sm:text-4xl">
+        {church.name} <span class="text-sa-gold">{visions.length}가지 핵심 가치</span>
+      </h2>
+
+      <ol class="mt-12 grid gap-x-10 gap-y-7 md:grid-cols-2">
+        {
+          visions.map((v, i) => (
+            <li class="flex gap-5 border-b border-white/10 pb-6">
+              <span class="shrink-0 text-2xl font-bold text-sa-gold">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div class="pt-0.5">
+                <p class="text-xl font-bold">{v.title}</p>
+                {v.desc && (
+                  <p class="mt-1.5 text-lg leading-relaxed text-white/75">{v.desc}</p>
+                )}
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+  )}
+
   {/* ─── 예배 시간 ─────────────────────────────────────── */}
-  <section id="worship" class="scroll-mt-24 bg-white pb-20 md:pb-24">
+  <section id="worship" class="scroll-mt-24 bg-white py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
       <p class="eyebrow">예배 안내</p>
 
@@ -340,31 +369,4 @@ const latestGallery = galleries[0];
       </div>
     </div>
   </section>
-
-  {/* ─── 핵심 가치 ──────────────────────────────────────────── */}
-  {visions.length > 0 && (
-  <section class="bg-sa-navy py-20 text-white md:py-24">
-    <div class="mx-auto max-w-6xl px-5">
-      <h2 class="text-3xl font-bold sm:text-4xl">{church.name} 핵심 가치</h2>
-
-      <ol class="mt-12 grid gap-x-10 gap-y-7 md:grid-cols-2">
-        {
-          visions.map((v, i) => (
-            <li class="flex gap-5 border-b border-white/10 pb-6">
-              <span class="shrink-0 text-2xl font-bold text-sa-gold">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div class="pt-0.5">
-                <p class="text-xl font-bold">{v.title}</p>
-                {v.desc && (
-                  <p class="mt-1.5 text-lg leading-relaxed text-white/75">{v.desc}</p>
-                )}
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-  )}
 </Base>
