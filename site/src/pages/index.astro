@@ -280,14 +280,11 @@ const latestGallery = galleries[0];
     </div>
   </section>
 
-  {/* ─── 비전 ──────────────────────────────────────────── */}
+  {/* ─── 핵심 가치 ──────────────────────────────────────────── */}
   {visions.length > 0 && (
   <section class="bg-sa-navy py-20 text-white md:py-24">
     <div class="mx-auto max-w-6xl px-5">
-      <p class="text-sm font-bold tracking-[0.1em] text-sa-gold">교회 비전</p>
-      <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
-        우리가 함께 바라보는 {visions.length}가지
-      </h2>
+      <h2 class="text-3xl font-bold sm:text-4xl">{church.name} 핵심 가치</h2>
 
       <ol class="mt-12 grid gap-x-10 gap-y-7 md:grid-cols-2">
         {
@@ -296,7 +293,12 @@ const latestGallery = galleries[0];
               <span class="shrink-0 text-2xl font-bold text-sa-gold">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <p class="pt-1 text-lg leading-relaxed text-white/85">{v}</p>
+              <div class="pt-0.5">
+                <p class="text-xl font-bold">{v.title}</p>
+                {v.desc && (
+                  <p class="mt-1.5 text-lg leading-relaxed text-white/75">{v.desc}</p>
+                )}
+              </div>
             </li>
           ))
         }

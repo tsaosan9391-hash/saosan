@@ -210,13 +210,16 @@ collections:
               - { label: 성함, name: name, widget: string }
 
       - name: vision
-        label: 교회 비전
+        label: 핵심 가치
         file: site/src/data/settings/vision.json
         fields:
-          - label: 비전 항목
+          - label: 핵심 가치 항목
             name: visions
             widget: list
-            hint: 항목마다 문장 하나씩 적어주세요.
+            summary: "{{fields.title}}"
+            fields:
+              - { label: 제목, name: title, widget: string, hint: "예) 예배(Worship)" }
+              - { label: 설명, name: desc, widget: string, required: false, hint: "예) 하나님을 예배하는 자여" }
 
       - name: intro
         label: 교회 소개 문안
