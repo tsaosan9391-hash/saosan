@@ -1,7 +1,6 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
-import PageHeader from "../components/PageHeader.astro";
 import { church, ministries } from "../data/church";
 
 // 지역을 섬긴 활동 앨범 — 공개로 설정한 것만, 최근 순으로
@@ -18,16 +17,18 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
   title="사역"
   description={`${church.name}의 사역 — ${ministries.map((m) => m.title).join(", ")}.`}
 >
-  <PageHeader
-    eyebrow="사역"
-    title="함께 섬기고 있습니다"
-    description="예배로 모이고, 삶으로 흩어져 이웃을 섬깁니다."
-  />
-
   {/* ─── 사역 목록 ──────────────────────────────────── */}
   <section class="py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
-      <div class="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
+      {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
+      <h1 class="sr-only">사역 소개</h1>
+      {/* 사역이 4개면 3칸 배열에서 하나가 외따로 남으므로 2×2로 보여 줍니다 */}
+      <div
+        class:list={[
+          "grid gap-7 sm:grid-cols-2",
+          ministries.length === 4 ? "lg:grid-cols-2" : "lg:grid-cols-3",
+        ]}
+      >
         {
           ministries.map((m) => (
             <div class="group relative overflow-hidden rounded-xl border border-sa-line p-8 transition-colors hover:border-sa-red">
