@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import PageHeader from "../components/PageHeader.astro";
 import { church, mainServices, fullAddress } from "../data/church";
 
 const query = encodeURIComponent(`${church.address} ${church.name}`);
@@ -27,13 +26,9 @@ const maps = [
   title="오시는 길"
   description={`${church.name} 위치 안내 — ${church.address}. 대표전화 ${church.phone}.`}
 >
-  <PageHeader
-    eyebrow="오시는 길"
-    title="교회로 오시는 길"
-    description="찾아오시기 어려우시면 언제든 교회로 문의해 주세요. 안내해 드리겠습니다."
-  />
-
   <section class="py-20 md:py-24">
+    {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
+    <h1 class="sr-only">교회로 오시는 길</h1>
     <div class="mx-auto max-w-6xl px-5">
       <div class="grid gap-12 lg:grid-cols-2">
         {/* 주소 · 연락처 */}
