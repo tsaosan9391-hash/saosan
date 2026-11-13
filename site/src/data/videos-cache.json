@@ -1,6 +1,15 @@
 {
   "videos": [
     {
+      "id": "VV8dDodZdDE",
+      "title": "인생의 목적지 #예배 #말씀 #구세군오산교회 #salvation #salvationarmy #korea #정상혁 #사관",
+      "published": "2026-11-13T06:41:01+00:00",
+      "thumbnail": "https://i3.ytimg.com/vi/VV8dDodZdDE/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=VV8dDodZdDE",
+      "isShort": false,
+      "category": "event"
+    },
+    {
       "id": "m87pCofDUCU",
       "title": "[2024.08.18] 구세군오산교회 주일 성결회 실시간 예배",
       "published": "2026-11-11T22:00:12+00:00",
@@ -124,15 +133,6 @@
       "thumbnail": "https://i2.ytimg.com/vi/M9Cs5lsu5Jc/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=M9Cs5lsu5Jc",
       "isShort": true,
-      "category": "event"
-    },
-    {
-      "id": "uttO_Py0M80",
-      "title": "2025 여름성경학교 l 예수님이 보이는 사람 #구세군오산교회 #여름성경학교",
-      "published": "2025-08-16T00:30:13+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/uttO_Py0M80/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=uttO_Py0M80",
-      "isShort": false,
       "category": "event"
     }
   ]
