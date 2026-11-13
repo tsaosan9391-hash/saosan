@@ -32,6 +32,9 @@ const videos = mergeVideos(
   registered,
 );
 
+const showSermonSection =
+  videoDisplay.homeSermonCount > 0 && videos.some((v) => v.category === "sermon");
+
 const galleries = (
   await getCollection("galleries", ({ data }) => data.published)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
@@ -227,71 +230,9 @@ const latestGallery = galleries[0];
     </div>
   </section>
 
-  {/* ─── 예배 시간 ─────────────────────────────────────── */}
-  <section id="worship" class="scroll-mt-24 bg-white pb-20 md:pb-24">
-    <div class="mx-auto max-w-6xl px-5">
-      {/*
-        핵심 가치 칸과 같은 양식: 연회색 칸 + 노란 머리(요일) + 제목(예배 이름) + 아랫줄(시간 · 장소).
-        넓은 화면에서는 왼쪽 줄부터 위에서 아래로 채우는 두 줄로 나눠 보여 줍니다.
-      */}
-      <div class="rounded-xl bg-sa-surface p-9">
-        <p class="eyebrow">예배 안내</p>
-        <h2 class="mt-4 text-2xl font-bold">
-          {church.name}{" "}
-          <span class="whitespace-nowrap text-sa-gold">예배 시간</span>
-        </h2>
-        <ol
-          class="mt-7 grid lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-[repeat(var(--rows),auto)] lg:gap-x-12"
-          style={`--rows: ${Math.ceil(mainServices.length / 2)}`}
-        >
-          {mainServices.map((s, i) => (
-            <li
-              class:list={[
-                "flex gap-4 border-t border-sa-line py-4 first:border-t-0 first:pt-0",
-                // 넓은 화면 오른쪽 줄의 첫 항목도 위 선 없이 시작
-                i === Math.ceil(mainServices.length / 2) && "lg:border-t-0 lg:pt-0",
-              ]}
-            >
-              <span class="w-14 shrink-0 text-lg font-bold text-sa-gold">{s.day}</span>
-              <div>
-                <p class="text-lg font-bold">{s.name}</p>
-                <p class="mt-0.5 text-sa-muted">
-                  <span class="font-bold text-sa-navy">{s.time}</span>
-                  {s.place && <> · {s.place}</>}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-
-      {
-        prayerServices.length > 0 && (
-          <div class="mt-6 flex flex-wrap gap-x-10 gap-y-3 rounded-xl bg-sa-navy px-7 py-5">
-            {prayerServices.map((s) => (
-              <p class="text-white/85">
-                <span class="font-bold text-sa-gold">{s.name}</span>
-                <span class="ml-3">{s.time}</span>
-              </p>
-            ))}
-          </div>
-        )
-      }
-
-      <a
-        href="/worship"
-        class="mt-8 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
-      >
-        전체 예배와 모임 보기
-        <span aria-hidden="true">→</span>
-      </a>
-    </div>
-  </section>
-
   {/* ─── 설교 영상 ─────────────────────────────────────── */}
   {
-    videoDisplay.homeSermonCount > 0 &&
-      videos.some((v) => v.category === "sermon") && (
+    showSermonSection && (
         <section class="bg-sa-surface py-20 md:py-24">
           <div class="mx-auto max-w-6xl px-5">
             <div class="flex flex-wrap items-end justify-between gap-4">
@@ -319,10 +260,16 @@ const latestGallery = galleries[0];
   }
 
   {/* ─── 유튜브 (행사·찬양 영상) ──────────────────────────── */}
+  {/* 바로 위가 같은 흰 바탕(구세군 소개)이면 위 여백을 줄여 간격이 벌어지지 않게 합니다 */}
   {
     videoDisplay.homeEventCount > 0 &&
       videos.some((v) => v.category === "event") && (
-        <section class="bg-white py-20 md:py-24">
+        <section
+          class:list={[
+            "bg-white pb-20 md:pb-24",
+            showSermonSection ? "pt-20 md:pt-24" : "pt-0",
+          ]}
+        >
           <div class="mx-auto max-w-6xl px-5">
             <div class="flex flex-wrap items-center justify-between gap-4">
               <p class="eyebrow">유튜브</p>

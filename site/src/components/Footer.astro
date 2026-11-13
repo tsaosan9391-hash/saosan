@@ -69,21 +69,6 @@ import { church, navigation, mainServices, relatedSites, fullAddress } from "../
         )}
       </div>
 
-      <!-- 예배 시간 -->
-      <div>
-        <h2 class="text-sm font-bold tracking-[0.1em] text-sa-gold">예배 안내</h2>
-        <ul class="mt-5 space-y-2.5 text-sm">
-          {
-            mainServices.map((s) => (
-              <li class="flex justify-between gap-4 border-b border-white/10 pb-2.5">
-                <span class="text-white/70">{s.name}</span>
-                <span class="shrink-0 font-bold text-white">{s.day} {s.time}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
       <!-- 바로가기 -->
       <div>
         <h2 class="text-sm font-bold tracking-[0.1em] text-sa-gold">바로가기</h2>
@@ -135,6 +120,21 @@ import { church, navigation, mainServices, relatedSites, fullAddress } from "../
                   </svg>
                   <span class="sr-only">(새 창에서 열림)</span>
                 </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- 예배 시간 (첫 화면 '예배 시간 안내' 버튼이 여기로 이동합니다) -->
+      <div id="worship" class="scroll-mt-24">
+        <h2 class="text-sm font-bold tracking-[0.1em] text-sa-gold">예배 안내</h2>
+        <ul class="mt-5 space-y-2.5 text-sm">
+          {
+            mainServices.map((s) => (
+              <li class="flex justify-between gap-4 border-b border-white/10 pb-2.5">
+                <span class="text-white/70">{s.name}</span>
+                <span class="shrink-0 font-bold text-white">{s.day} {s.time}</span>
               </li>
             ))
           }
