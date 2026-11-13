@@ -22,10 +22,11 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
     <div class="mx-auto max-w-6xl px-5">
       {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
       <h1 class="sr-only">사역 소개</h1>
+      <p class="eyebrow">사역</p>
       {/* 사역이 4개면 3칸 배열에서 하나가 외따로 남으므로 2×2로 보여 줍니다 */}
       <div
         class:list={[
-          "grid gap-7 sm:grid-cols-2",
+          "mt-8 grid gap-7 sm:grid-cols-2",
           ministries.length === 4 ? "lg:grid-cols-2" : "lg:grid-cols-3",
         ]}
       >
