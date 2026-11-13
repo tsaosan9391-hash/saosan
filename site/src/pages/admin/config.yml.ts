@@ -230,7 +230,7 @@ collections:
             name: greeting
             widget: text
             hint: 교회 소개 페이지 맨 위에 나오는 환영 인사말입니다.
-          - { label: 구세군 소개, name: salvationArmy, widget: text }
+          - { label: 구세군 소개, name: salvationArmy, widget: text, hint: "빈 줄을 한 줄 넣으면 문단이 나뉘어 보입니다." }
           - { label: 우리 교회 소개, name: ourChurch, widget: text, required: false, hint: "비워 두면 교회 소개 페이지의 '우리 교회' 영역이 숨겨집니다." }
           - label: 구세군 선교선언문
             name: missionStatement

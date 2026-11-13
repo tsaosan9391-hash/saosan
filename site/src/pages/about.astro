@@ -148,7 +148,18 @@ const terms = [
           <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
             마음은 하나님께, 손길은 이웃에게
           </h2>
-          <p class="mt-6 leading-relaxed text-sa-muted">{intro.salvationArmy}</p>
+          {/* 빈 줄로 나눈 문단마다 따로 보여 줍니다 (관리자 화면에서 빈 줄로 문단 구분) */}
+          <div class="mt-6">
+            {intro.salvationArmy
+              .split(/\n\s*\n/)
+              .map((para) => para.trim())
+              .filter(Boolean)
+              .map((para) => (
+                <p class="mt-5 text-[17px] leading-[1.85] text-sa-ink/80 first:mt-0 sm:text-lg">
+                  {para}
+                </p>
+              ))}
+          </div>
         </div>
       </div>
     </div>
