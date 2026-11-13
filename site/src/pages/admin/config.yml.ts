@@ -319,7 +319,7 @@ collections:
         label: 영상 노출 개수
         file: site/src/data/settings/videos.json
         description: >-
-          메인 화면과 교회영상 페이지에 설교/행사 영상을 몇 개까지
+          메인 화면과 교회 영상 페이지에 설교/행사 영상을 몇 개까지
           보여줄지 정합니다. ⚠️ 유튜브 제공 방식의 한계로, 채널에서
           가장 최근에 올라온 15개 영상 안에서만 가져올 수 있습니다.
           그 15개 안에 행사 영상이 2개뿐이면, 여기 숫자를 아무리 늘려도
@@ -337,13 +337,13 @@ collections:
             value_type: int
             min: 0
             default: 1
-          - label: 교회영상 페이지 · 설교 영상 개수
+          - label: 교회 영상 페이지 · 설교 영상 개수
             name: pageSermonCount
             widget: number
             value_type: int
             min: 0
             default: 12
-          - label: 교회영상 페이지 · 행사 스케치 개수
+          - label: 교회 영상 페이지 · 행사 스케치 개수
             name: pageEventCount
             widget: number
             value_type: int
