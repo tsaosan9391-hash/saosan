@@ -1,38 +1,11 @@
 {
   "videos": [
     {
-      "id": "XFJo-g-q4q4",
-      "title": "[2024.08.18] 구세군오산교회 주일 성결회 실시간 예배",
-      "published": "2026-11-15T05:34:08+00:00",
-      "thumbnail": "https://i1.ytimg.com/vi/XFJo-g-q4q4/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=XFJo-g-q4q4",
-      "isShort": false,
-      "category": "event"
-    },
-    {
-      "id": "q5OOT_BQezk",
-      "title": "구세군 오산교회 주일 성결예배",
-      "published": "2026-11-15T01:46:43+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/q5OOT_BQezk/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=q5OOT_BQezk",
-      "isShort": false,
-      "category": "event"
-    },
-    {
       "id": "VV8dDodZdDE",
       "title": "인생의 목적지 #예배 #말씀 #구세군오산교회 #salvation #salvationarmy #korea #정상혁 #사관",
       "published": "2026-11-13T06:41:01+00:00",
       "thumbnail": "https://i3.ytimg.com/vi/VV8dDodZdDE/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=VV8dDodZdDE",
-      "isShort": false,
-      "category": "event"
-    },
-    {
-      "id": "m87pCofDUCU",
-      "title": "[2024.08.18] 구세군오산교회 주일 성결회 실시간 예배",
-      "published": "2026-11-11T22:00:12+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/m87pCofDUCU/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=m87pCofDUCU",
       "isShort": false,
       "category": "event"
     },
@@ -132,6 +105,33 @@
       "published": "2026-07-30T14:22:41+00:00",
       "thumbnail": "https://i2.ytimg.com/vi/MPsZzUctkAU/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=MPsZzUctkAU",
+      "isShort": false,
+      "category": "event"
+    },
+    {
+      "id": "12DIRU3JvGI",
+      "title": "주만 바라볼찌라 #예배 #찬양 #구세군 #구세군오산교회",
+      "published": "2026-07-29T13:08:14+00:00",
+      "thumbnail": "https://i2.ytimg.com/vi/12DIRU3JvGI/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=12DIRU3JvGI",
+      "isShort": false,
+      "category": "event"
+    },
+    {
+      "id": "M9Cs5lsu5Jc",
+      "title": "랜덤 비빔밥 챌린지 #shorts #랜덤비빔밤 #비빔밥 #챌린지 #성공 #맛있다 #구세군 #구세군오산교회 #행복",
+      "published": "2026-07-28T12:38:28+00:00",
+      "thumbnail": "https://i2.ytimg.com/vi/M9Cs5lsu5Jc/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=M9Cs5lsu5Jc",
+      "isShort": true,
+      "category": "event"
+    },
+    {
+      "id": "uttO_Py0M80",
+      "title": "2025 여름성경학교 l 예수님이 보이는 사람 #구세군오산교회 #여름성경학교",
+      "published": "2025-08-16T00:30:13+00:00",
+      "thumbnail": "https://i2.ytimg.com/vi/uttO_Py0M80/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=uttO_Py0M80",
       "isShort": false,
       "category": "event"
     }
