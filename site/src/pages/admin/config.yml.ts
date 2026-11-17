@@ -41,6 +41,7 @@ collections:
           - { label: "예배와 모임 메뉴", name: worship, widget: string }
           - { label: "설교 메뉴", name: sermons, widget: string }
           - { label: "사역 메뉴", name: ministry, widget: string }
+          - { label: "샛별어린이집 메뉴", name: daycare, widget: string }
           - { label: "사진 메뉴", name: gallery, widget: string }
           - { label: "소식 메뉴", name: news, widget: string }
           - { label: "오시는 길 메뉴", name: visit, widget: string }
@@ -297,6 +298,25 @@ collections:
                 name: caption
                 widget: string
                 hint: "예) 2026 추수감사주일"
+
+      - name: daycare
+        label: 샛별어린이집
+        file: site/src/data/settings/daycare.json
+        description: 메뉴 '샛별어린이집' 페이지에 나오는 내용입니다.
+        fields:
+          - { label: 이름, name: name, widget: string }
+          - label: 소개
+            name: intro
+            widget: text
+            hint: 빈 줄을 한 줄 넣으면 문단이 나뉘어 보입니다.
+          - { label: 주소, name: address, widget: string, required: false, hint: "비워 두면 표시하지 않습니다." }
+          - { label: 전화, name: phone, widget: string, required: false, hint: "어린이집 대표번호만 적어 주세요. 비워 두면 표시하지 않습니다." }
+          - label: 사진
+            name: photos
+            widget: image
+            multiple: true
+            required: false
+            hint: 여러 장을 한 번에 올릴 수 있습니다. 아이 얼굴이 드러나는 사진은 보호자 동의를 확인해 주세요.
 
       - name: ministry
         label: 사역 소개

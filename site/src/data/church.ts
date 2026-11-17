@@ -17,6 +17,7 @@ import officersSettings from "./settings/officers.json";
 import visionSettings from "./settings/vision.json";
 import introSettings from "./settings/intro.json";
 import ministrySettings from "./settings/ministry.json";
+import daycareSettings from "./settings/daycare.json";
 import heritageSettings from "./settings/heritage.json";
 import heroSettings from "./settings/hero.json";
 import videoSettings from "./settings/videos.json";
@@ -35,6 +36,7 @@ const DEFAULTS = {
     worship: "예배와 모임",
     sermons: "설교",
     ministry: "사역",
+    daycare: "샛별어린이집",
     gallery: "사진",
     news: "소식",
     visit: "오시는 길",
@@ -302,6 +304,15 @@ export const relatedSites = [
   },
 ];
 
+/** 부설 구세군샛별어린이집 — 관리자 화면 '사이트 설정 > 샛별어린이집'에서 편집 */
+export const daycare = {
+  name: or(daycareSettings.name, "구세군샛별어린이집"),
+  intro: daycareSettings.intro ?? "",
+  address: daycareSettings.address ?? "",
+  phone: daycareSettings.phone ?? "",
+  photos: (daycareSettings.photos ?? []) as string[],
+};
+
 const navLabels = { ...DEFAULTS.navLabels, ...navSettings };
 
 /**
@@ -318,6 +329,7 @@ export const navigation = [
     ? [{ label: navLabels.sermons, href: "/sermons" }]
     : []),
   { label: navLabels.ministry, href: "/ministry" },
+  { label: navLabels.daycare, href: "/daycare" },
   { label: navLabels.gallery, href: "/gallery" },
   { label: navLabels.news, href: "/news" },
   { label: navLabels.visit, href: "/visit" },
