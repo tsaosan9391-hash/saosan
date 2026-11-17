@@ -145,8 +145,9 @@ const latestGallery = galleries[0];
   {/* ─── 구세군 소개 + 핵심 가치 ───────────────────────── */}
   <section class="bg-white py-20 md:py-24">
     <div class="mx-auto max-w-6xl px-5">
-      <div class="grid gap-14 lg:grid-cols-2">
-        <div>
+      {/* 두 칸은 같은 모양·같은 높이로 나란히 놓입니다 */}
+      <div class="grid gap-8 lg:grid-cols-2">
+        <div class="flex flex-col items-start rounded-xl bg-sa-surface p-7 sm:p-9">
           <p class="eyebrow">구세군이란</p>
           <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
             1865년 영국 런던에서 시작된 교단입니다
@@ -176,48 +177,52 @@ const latestGallery = galleries[0];
           (영상 주소가 비어 있으면 오시는 길 안내)
         */}
         {saVideos.length > 0 ? (
-          <div class="h-fit rounded-xl bg-sa-surface p-9">
-            <h2 class="eyebrow">구세군 이야기</h2>
-            {saVideos.map((v, i) => (
-              <div class={i === 0 ? "mt-6" : "mt-8"}>
-                <div
-                  class="aspect-video overflow-hidden rounded-lg bg-black"
-                  data-sa-video={v.id}
-                >
-                  <button
-                    type="button"
-                    class="group relative block h-full w-full"
-                    aria-label={`영상 재생: ${v.title || "구세군 소개 영상"}`}
+          <div class="flex flex-col items-start rounded-xl bg-sa-surface p-7 sm:p-9">
+            <p class="eyebrow">구세군 이야기</p>
+            {/* 영상은 왼쪽 썸네일 + 오른쪽 제목으로 한 줄씩. 칸 높이에 맞춰 고르게 벌립니다 */}
+            <ul class="mt-6 flex w-full flex-1 flex-col justify-between gap-5">
+              {saVideos.map((v) => (
+                <li class="grid grid-cols-[minmax(0,46%)_1fr] items-center gap-4 sm:gap-5 lg:grid-cols-[minmax(0,58%)_1fr]">
+                  <div
+                    class="aspect-video overflow-hidden rounded-lg bg-black"
+                    data-sa-video={v.id}
                   >
-                    <img
-                      src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
-                      alt=""
-                      loading="lazy"
-                      class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
-                    />
-                    <span class="absolute inset-0 flex items-center justify-center">
-                      <span class="flex h-16 w-16 items-center justify-center rounded-full bg-sa-red text-white shadow-lg transition-transform group-hover:scale-110">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                          <path d="M8 5v14l11-7z"></path>
-                        </svg>
+                    <button
+                      type="button"
+                      class="group relative block h-full w-full"
+                      aria-label={`영상 재생: ${v.title || "구세군 소개 영상"}`}
+                    >
+                      <img
+                        src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+                        alt=""
+                        loading="lazy"
+                        class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                      />
+                      <span class="absolute inset-0 flex items-center justify-center">
+                        <span class="flex h-11 w-11 items-center justify-center rounded-full bg-sa-red text-white shadow-lg transition-transform group-hover:scale-110 sm:h-12 sm:w-12">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M8 5v14l11-7z"></path>
+                          </svg>
+                        </span>
                       </span>
-                    </span>
-                  </button>
-                </div>
-                {v.title && <p class="mt-4 font-bold leading-snug">{v.title}</p>}
-                <a
-                  href={v.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class:list={[
-                    "inline-block text-sm text-sa-muted underline decoration-dotted hover:text-sa-red",
-                    v.title ? "mt-2" : "mt-3",
-                  ]}
-                >
-                  유튜브에서 보기
-                </a>
-              </div>
-            ))}
+                    </button>
+                  </div>
+                  <div class="min-w-0">
+                    {v.title && (
+                      <p class="text-[15px] font-bold leading-snug sm:text-base">{v.title}</p>
+                    )}
+                    <a
+                      href={v.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="mt-2 inline-block text-sm text-sa-muted underline decoration-dotted hover:text-sa-red"
+                    >
+                      유튜브에서 보기
+                    </a>
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         ) : (
           <div class="rounded-xl bg-sa-surface p-9">
