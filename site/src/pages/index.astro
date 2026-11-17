@@ -5,7 +5,6 @@ import {
   church,
   mainServices,
   prayerServices,
-  visions,
   intro,
   fullAddress,
   heroPhotos,
@@ -16,6 +15,7 @@ import PhotoSlideshow from "../components/PhotoSlideshow.astro";
 import HeroSlideshow from "../components/HeroSlideshow.astro";
 import {
   fetchChannelVideos,
+  extractVideoId,
   toVideo,
   mergeVideos,
   type Video,
@@ -31,6 +31,11 @@ const videos = mergeVideos(
   await fetchChannelVideos(church.youtubeChannelId, 15),
   registered,
 );
+
+// '구세군이란' 옆 소개 영상
+const saVideoId = intro.salvationArmyVideo
+  ? extractVideoId(intro.salvationArmyVideo)
+  : null;
 
 const showSermonSection =
   videoDisplay.homeSermonCount > 0 && videos.some((v) => v.category === "sermon");
@@ -167,29 +172,50 @@ const latestGallery = galleries[0];
         </div>
 
         {/*
-          오른쪽 칸: 핵심 가치. (핵심 가치가 비어 있으면 예전처럼 오시는 길 안내)
-          오시는 길 정보는 바닥글과 '오시는 길' 메뉴에 그대로 있습니다.
+          오른쪽 칸: 구세군 소개 영상. 누르면 그 자리에서 재생됩니다.
+          (영상 주소가 비어 있으면 오시는 길 안내)
         */}
-        {visions.length > 0 ? (
-          <div class="rounded-xl bg-sa-surface p-9">
-            <p class="eyebrow">핵심 가치</p>
+        {saVideoId ? (
+          <div class="h-fit rounded-xl bg-sa-surface p-9">
+            <p class="eyebrow">구세군 이야기</p>
             <h2 class="mt-4 text-2xl font-bold">
-              {church.name}{" "}
-              <span class="whitespace-nowrap text-sa-gold">{visions.length}가지 핵심 가치</span>
+              구세군의 <span class="text-sa-gold">시작</span>
             </h2>
-            <ol class="mt-7 divide-y divide-sa-line">
-              {visions.map((v, i) => (
-                <li class="flex gap-4 py-4 first:pt-0 last:pb-0">
-                  <span class="w-8 shrink-0 text-xl font-bold text-sa-gold">
-                    {String(i + 1).padStart(2, "0")}
+            <div
+              class="mt-7 aspect-video overflow-hidden rounded-lg bg-black"
+              data-sa-video={saVideoId}
+            >
+              <button
+                type="button"
+                class="group relative block h-full w-full"
+                aria-label={`영상 재생: ${intro.salvationArmyVideoTitle || "구세군의 시작"}`}
+              >
+                <img
+                  src={`https://i.ytimg.com/vi/${saVideoId}/hqdefault.jpg`}
+                  alt=""
+                  loading="lazy"
+                  class="h-full w-full object-cover opacity-90 transition-opacity group-hover:opacity-100"
+                />
+                <span class="absolute inset-0 flex items-center justify-center">
+                  <span class="flex h-16 w-16 items-center justify-center rounded-full bg-sa-red text-white shadow-lg transition-transform group-hover:scale-110">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"></path>
+                    </svg>
                   </span>
-                  <div>
-                    <p class="text-lg font-bold">{v.title}</p>
-                    {v.desc && <p class="mt-0.5 text-sa-muted">{v.desc}</p>}
-                  </div>
-                </li>
-              ))}
-            </ol>
+                </span>
+              </button>
+            </div>
+            {intro.salvationArmyVideoTitle && (
+              <p class="mt-4 font-bold leading-snug">{intro.salvationArmyVideoTitle}</p>
+            )}
+            <a
+              href={intro.salvationArmyVideo}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-2 inline-block text-sm text-sa-muted underline decoration-dotted hover:text-sa-red"
+            >
+              유튜브에서 보기
+            </a>
           </div>
         ) : (
           <div class="rounded-xl bg-sa-surface p-9">
@@ -383,4 +409,14 @@ const latestGallery = galleries[0];
       </div>
     </div>
   </section>
+
+<script>
+  // 구세군 소개 영상: 누르면 썸네일 자리에 유튜브 플레이어를 넣어 바로 재생합니다
+  document.querySelectorAll<HTMLElement>("[data-sa-video]").forEach((box) => {
+    box.querySelector("button")?.addEventListener("click", () => {
+      const id = box.dataset.saVideo;
+      box.innerHTML = `<iframe class="h-full w-full" src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0" title="구세군의 시작" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+    });
+  });
+</script>
 </Base>
