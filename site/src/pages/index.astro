@@ -177,12 +177,9 @@ const latestGallery = galleries[0];
         */}
         {saVideos.length > 0 ? (
           <div class="h-fit rounded-xl bg-sa-surface p-9">
-            <p class="eyebrow">구세군 이야기</p>
-            <h2 class="mt-4 text-2xl font-bold">
-              구세군의 <span class="text-sa-gold">시작</span>
-            </h2>
-            {saVideos.map((v) => (
-              <div class="mt-7">
+            <h2 class="eyebrow">구세군 이야기</h2>
+            {saVideos.map((v, i) => (
+              <div class={i === 0 ? "mt-6" : "mt-8"}>
                 <div
                   class="aspect-video overflow-hidden rounded-lg bg-black"
                   data-sa-video={v.id}
