@@ -232,8 +232,15 @@ collections:
             widget: text
             hint: 교회 소개 페이지 맨 위에 나오는 환영 인사말입니다.
           - { label: 구세군 소개, name: salvationArmy, widget: text, hint: "빈 줄을 한 줄 넣으면 문단이 나뉘어 보입니다." }
-          - { label: 구세군 소개 영상 주소, name: salvationArmyVideo, widget: string, required: false, hint: "첫 화면 '구세군이란' 옆에 나오는 유튜브 영상 주소입니다. 비우면 오시는 길 안내가 대신 나옵니다." }
-          - { label: 구세군 소개 영상 제목, name: salvationArmyVideoTitle, widget: string, required: false }
+          - label: 구세군 소개 영상
+            name: salvationArmyVideos
+            widget: list
+            required: false
+            summary: "{{fields.title}}"
+            hint: 첫 화면 '구세군이란' 옆에 위에서부터 차례로 나오는 유튜브 영상입니다. 모두 비우면 오시는 길 안내가 대신 나옵니다.
+            fields:
+              - { label: 유튜브 주소, name: url, widget: string }
+              - { label: 영상 제목, name: title, widget: string, required: false }
           - { label: 우리 교회 소개, name: ourChurch, widget: text, required: false, hint: "비워 두면 교회 소개 페이지의 '우리 교회' 영역이 숨겨집니다." }
           - label: 구세군 선교선언문
             name: missionStatement

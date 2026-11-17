@@ -1,8 +1,16 @@
 {
   "greeting": "소중한 당신을 초대합니다.",
   "salvationArmy": "구세군은 1865년 영국 감리회 목사였던 윌리엄 부스(William Booth)와 그의 아내 캐서린 부스(Catherine Booth)에 의해 창립되었습니다.\n\n런던의 빈민가에서 복음을 전하던 윌리엄 부스는 자신이 전도한 가난한 사람들이 정작 교회에서는 냉대받는 현실을 마주했습니다. 이에 소외된 이웃을 적극적으로 돕고, 함께 예배할 수 있는 공동체를 세웠으며, 이것이 구세군의 시작이 되었습니다.\n\n현재 구세군은 ‘마음은 하나님께 손길은 이웃에게’라는 슬로건을 가지고, 전 세계 134개국에서 인종과 국적, 지역을 초월하여 선교와 구호, 사회복지 활동을 펼치고 있습니다. 특히 성탄절 거리에서 만날 수 있는 자선냄비 모금 활동으로 널리 알려져 있습니다.\n\n한국에서는 1908년부터 사역을 시작했으며, 예수 그리스도의 복음을 전하는 일과 어려운 이웃을 섬기는 일을 실천하고 있습니다.",
-  "salvationArmyVideo": "https://www.youtube.com/watch?v=398Eak71dGk",
-  "salvationArmyVideoTitle": "구세군의 시작 - The Beginning of the Salvation Army",
+  "salvationArmyVideos": [
+    {
+      "url": "https://www.youtube.com/watch?v=398Eak71dGk",
+      "title": "구세군의 시작 - The Beginning of the Salvation Army"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=fuQ0oJClVtY",
+      "title": ""
+    }
+  ],
   "ourChurch": "",
   "missionStatement": [
     "구세군은 국제적으로 활동하는 보편적인 기독교 교회에 속한 복음주의 교단이다.",

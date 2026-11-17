@@ -264,10 +264,11 @@ export const videoDisplay = {
 export const intro = {
   greeting: or(introSettings.greeting, DEFAULTS.intro.greeting),
   salvationArmy: or(introSettings.salvationArmy, DEFAULTS.intro.salvationArmy),
-  // 첫 화면 '구세군이란' 옆에 보여 줄 소개 영상 (비우면 오시는 길 안내가 대신 나옵니다)
-  salvationArmyVideo: (introSettings as { salvationArmyVideo?: string }).salvationArmyVideo ?? "",
-  salvationArmyVideoTitle:
-    (introSettings as { salvationArmyVideoTitle?: string }).salvationArmyVideoTitle ?? "",
+  // 첫 화면 '구세군이란' 옆에 위에서부터 차례로 보여 줄 소개 영상
+  // (비우면 오시는 길 안내가 대신 나옵니다)
+  salvationArmyVideos: ((
+    introSettings as { salvationArmyVideos?: { url: string; title?: string }[] }
+  ).salvationArmyVideos ?? []) as { url: string; title?: string }[],
   ourChurch: or(introSettings.ourChurch, DEFAULTS.intro.ourChurch),
   missionStatement: or(
     introSettings.missionStatement,
