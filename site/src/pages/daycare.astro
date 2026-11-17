@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import { church, daycare } from "../data/church";
+
+// 소개 글은 빈 줄을 기준으로 문단을 나눠 보여 줍니다
+const paragraphs = daycare.intro
+  .split(/\n\s*\n/)
+  .map((p) => p.trim())
+  .filter(Boolean);
+---
+
+<Base
+  title={daycare.name}
+  description={`${church.name} 부설 ${daycare.name} 안내.`}
+>
+  <section class="py-20 md:py-24">
+    <div class="mx-auto max-w-6xl px-5">
+      <div class="grid gap-12 lg:grid-cols-2">
+        {/* 소개 */}
+        <div>
+          <p class="eyebrow">{church.name} 부설</p>
+          <h1 class="mt-4 text-2xl font-bold sm:text-3xl">{daycare.name}</h1>
+          <div class="mt-6">
+            {paragraphs.map((p) => (
+              <p class="mt-5 text-[17px] leading-[1.85] text-sa-ink/80 first:mt-0 sm:text-lg">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* 안내 — 주소·전화가 비어 있으면 그 줄은 숨깁니다 */}
+        {(daycare.address || daycare.phone) && (
+          <div class="h-fit rounded-xl bg-sa-surface p-9">
+            <p class="eyebrow">안내</p>
+            <dl class="mt-6 space-y-5">
+              {daycare.address && (
+                <div>
+                  <dt class="text-sm font-bold text-sa-muted">주소</dt>
+                  <dd class="mt-1 text-lg">{daycare.address}</dd>
+                </div>
+              )}
+              {daycare.phone && (
+                <div>
+                  <dt class="text-sm font-bold text-sa-muted">전화</dt>
+                  <dd class="mt-1">
+                    <a
+                      href={`tel:${daycare.phone}`}
+                      class="text-lg font-bold text-sa-red hover:underline"
+                    >
+                      {daycare.phone}
+                    </a>
+                  </dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        )}
+      </div>
+
+      {/* 사진 */}
+      {daycare.photos.length > 0 && (
+        <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {daycare.photos.map((src) => (
+            <div class="aspect-[4/3] overflow-hidden rounded-xl bg-sa-navy/10">
+              <img src={src} alt="" loading="lazy" class="h-full w-full object-cover" />
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Base>
