@@ -1,6 +1,5 @@
 ---
 import Base from "../layouts/Base.astro";
-import PageHeader from "../components/PageHeader.astro";
 import { church, intro, visions, officers, heritagePhotos } from "../data/church";
 
 /** 자선냄비 소개 */
@@ -68,10 +67,8 @@ const terms = [
   title="교회 소개"
   description={`${church.name} 소개 — 구세군은 1865년 영국 런던에서 창립된 기독교 교단입니다.`}
 >
-  <PageHeader
-    eyebrow="교회 소개"
-    title={`${church.name}입니다`}
-  />
+  {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
+  <h1 class="sr-only">{church.name} 교회 소개</h1>
 
   {/* ─── 인사말 ─────────────────────────────────────── */}
   {
