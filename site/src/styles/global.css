@@ -45,12 +45,27 @@
     -webkit-text-size-adjust: 100%;
   }
 
+  /*
+    넓은 모니터에서는 글자·여백·본문 폭을 함께 키워 화면을 넓게 씁니다.
+    (크기를 모두 rem 으로 잡아 두어서 기준 글자 크기만 바꾸면 전체가 같이 커집니다)
+    1536px 이상 112.5%, 1920px 이상 125%, 2400px 이상 150%. 휴대폰·태블릿·일반 노트북은 그대로입니다.
+  */
+  @media (min-width: 1536px) {
+    html { font-size: 112.5%; }
+  }
+  @media (min-width: 1920px) {
+    html { font-size: 125%; }
+  }
+  @media (min-width: 2400px) {
+    html { font-size: 150%; }
+  }
+
   body {
     font-family: var(--font-sans);
     color: var(--color-sa-ink);
     background: #fff;
     /* 어르신 가독성을 위해 기본 본문 크기 상향 */
-    font-size: 17px;
+    font-size: 1.0625rem; /* 17px */
     line-height: 1.75;
     word-break: keep-all; /* 한글 단어 단위 줄바꿈 */
   }
