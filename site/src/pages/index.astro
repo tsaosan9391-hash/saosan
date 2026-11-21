@@ -44,6 +44,11 @@ const galleries = (
   await getCollection("galleries", ({ data }) => data.published && !data.daycare)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latestGallery = galleries[0];
+
+// 샛별어린이집 최신 앨범 (행사 사진 바로 아래에 같은 모양으로)
+const latestDaycare = (
+  await getCollection("galleries", ({ data }) => data.published && data.daycare)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())[0];
 ---
 
 <Base>
@@ -369,6 +374,39 @@ const latestGallery = galleries[0];
             class="mt-6 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
           >
             "{latestGallery.data.title}" 앨범 전체 보기
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  {/* ─── 샛별어린이집 사진 ──────────────────────────────── */}
+  {
+    latestDaycare && (
+      <section class:list={["pb-20 md:pb-24", latestGallery ? "pt-0" : "pt-20 md:pt-24"]}>
+        <div class="mx-auto max-w-6xl px-5">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="eyebrow">샛별어린이집</p>
+              <h2 class="mt-4 text-3xl font-bold sm:text-4xl">
+                {latestDaycare.data.title}
+              </h2>
+            </div>
+            <a href="/daycare" class="font-bold text-sa-red hover:underline">
+              샛별어린이집 보기 →
+            </a>
+          </div>
+
+          <div class="mt-12">
+            <PhotoSlideshow photos={latestDaycare.data.photos.slice(0, 8)} />
+          </div>
+
+          <a
+            href={`/gallery/${latestDaycare.id}`}
+            class="mt-6 inline-flex items-center gap-2 font-bold text-sa-red hover:underline"
+          >
+            "{latestDaycare.data.title}" 앨범 전체 보기
             <span aria-hidden="true">→</span>
           </a>
         </div>
