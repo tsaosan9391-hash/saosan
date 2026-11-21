@@ -60,12 +60,27 @@ const paragraphs = daycare.intro
 
       {/* 사진 */}
       {daycare.photos.length > 0 && (
-        <div class="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {daycare.photos.map((src) => (
-            <div class="aspect-[4/3] overflow-hidden rounded-xl bg-sa-navy/10">
-              <img src={src} alt="" loading="lazy" class="h-full w-full object-cover" />
-            </div>
-          ))}
+        <div class="mt-16">
+          {daycare.photosTitle && (
+            <h2 class="text-xl font-bold sm:text-2xl">{daycare.photosTitle}</h2>
+          )}
+          <div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
+            {daycare.photos.map((src) => (
+              <a
+                href={src}
+                target="_blank"
+                rel="noopener"
+                class="block aspect-[3/4] overflow-hidden rounded-xl bg-sa-navy/10"
+              >
+                <img
+                  src={src}
+                  alt={daycare.photosTitle || `${daycare.name} 활동 사진`}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </div>
