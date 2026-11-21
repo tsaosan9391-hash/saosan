@@ -1,6 +1,14 @@
 ---
+import { getCollection } from "astro:content";
 import Base from "../layouts/Base.astro";
 import { church, daycare } from "../data/church";
+
+const albums = (
+  await getCollection("galleries", ({ data }) => data.published && data.daycare)
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const fmt = (d: Date) =>
+  `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
 
 // 소개 글은 빈 줄을 기준으로 문단을 나눠 보여 줍니다
 const paragraphs = daycare.intro
@@ -58,29 +66,31 @@ const paragraphs = daycare.intro
         )}
       </div>
 
-      {/* 사진 */}
-      {daycare.photos.length > 0 && (
-        <div class="mt-16">
-          {daycare.photosTitle && (
-            <h2 class="text-xl font-bold sm:text-2xl">{daycare.photosTitle}</h2>
-          )}
-          <div class="mt-6 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
-            {daycare.photos.map((src) => (
-              <a
-                href={src}
-                target="_blank"
-                rel="noopener"
-                class="block aspect-[3/4] overflow-hidden rounded-xl bg-sa-navy/10"
-              >
+      {/* 샛별어린이집 앨범 (관리자 화면 '사진 갤러리'에서 '샛별어린이집 앨범'을 체크한 것) */}
+      {albums.length > 0 && (
+        <div class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {albums.map((g) => (
+            <a
+              href={`/gallery/${g.id}`}
+              class="group block overflow-hidden rounded-xl border border-sa-line bg-white transition-shadow hover:shadow-lg"
+            >
+              <div class="aspect-[4/3] overflow-hidden bg-sa-navy/10">
                 <img
-                  src={src}
-                  alt={daycare.photosTitle || `${daycare.name} 활동 사진`}
+                  src={g.data.photos[0]}
+                  alt=""
                   loading="lazy"
-                  class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />
-              </a>
-            ))}
-          </div>
+              </div>
+              <div class="p-5">
+                <p class="text-xs font-bold text-sa-muted">{fmt(g.data.date)}</p>
+                <h2 class="mt-2 font-bold leading-snug group-hover:text-sa-red">
+                  {g.data.title}
+                </h2>
+                <p class="mt-1.5 text-sm text-sa-muted">사진 {g.data.photos.length}장</p>
+              </div>
+            </a>
+          ))}
         </div>
       )}
     </div>

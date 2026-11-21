@@ -315,8 +315,6 @@ export const daycare = {
   intro: daycareSettings.intro ?? "",
   address: daycareSettings.address ?? "",
   phone: daycareSettings.phone ?? "",
-  photos: (daycareSettings.photos ?? []) as string[],
-  photosTitle: (daycareSettings as { photosTitle?: string }).photosTitle ?? "",
 };
 
 const navLabels = { ...DEFAULTS.navLabels, ...navSettings };

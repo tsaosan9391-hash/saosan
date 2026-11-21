@@ -64,6 +64,8 @@ const galleries = defineCollection({
     // 지역을 섬긴 활동(식사봉사, 나눔행사 등)이면 체크합니다.
     // 사역 소개 페이지의 '섬김의 현장'에 사진이 함께 나옵니다.
     service: z.boolean().default(false),
+    // 샛별어린이집 앨범이면 체크합니다. '행사 사진' 대신 샛별어린이집 페이지에 나옵니다.
+    daycare: z.boolean().default(false),
   }),
 });
 

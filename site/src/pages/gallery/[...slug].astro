@@ -20,10 +20,10 @@ const dateText = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일
   <article class="py-16 md:py-20">
     <div class="mx-auto max-w-5xl px-5">
       <a
-        href="/gallery"
+        href={gallery.data.daycare ? "/daycare" : "/gallery"}
         class="inline-flex items-center gap-1.5 text-sm font-bold text-sa-muted transition-colors hover:text-sa-red"
       >
-        <span aria-hidden="true">←</span> 사진 갤러리
+        <span aria-hidden="true">←</span> {gallery.data.daycare ? "샛별어린이집" : "사진 갤러리"}
       </a>
 
       <header class="mt-8 border-b border-sa-line pb-8">

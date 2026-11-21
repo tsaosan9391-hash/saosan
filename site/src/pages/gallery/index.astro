@@ -5,7 +5,7 @@ import PageHeader from "../../components/PageHeader.astro";
 import { church } from "../../data/church";
 
 const galleries = (
-  await getCollection("galleries", ({ data }) => data.published)
+  await getCollection("galleries", ({ data }) => data.published && !data.daycare)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
 const fmt = (d: Date) =>
