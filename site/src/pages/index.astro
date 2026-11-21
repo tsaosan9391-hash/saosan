@@ -41,7 +41,7 @@ const showSermonSection =
   videoDisplay.homeSermonCount > 0 && videos.some((v) => v.category === "sermon");
 
 const galleries = (
-  await getCollection("galleries", ({ data }) => data.published)
+  await getCollection("galleries", ({ data }) => data.published && !data.daycare)
 ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const latestGallery = galleries[0];
 ---

@@ -320,13 +320,6 @@ collections:
             hint: 빈 줄을 한 줄 넣으면 문단이 나뉘어 보입니다.
           - { label: 주소, name: address, widget: string, required: false, hint: "비워 두면 표시하지 않습니다." }
           - { label: 전화, name: phone, widget: string, required: false, hint: "어린이집 대표번호만 적어 주세요. 비워 두면 표시하지 않습니다." }
-          - { label: 사진 제목, name: photosTitle, widget: string, required: false, hint: "예) 소망반 10월 활동 사진" }
-          - label: 사진
-            name: photos
-            widget: image
-            multiple: true
-            required: false
-            hint: 여러 장을 한 번에 올릴 수 있습니다. 아이 얼굴이 드러나는 사진은 보호자 동의를 확인해 주세요. 사진 속 아이 이름표가 보이지 않는지도 확인해 주세요.
 
       - name: ministry
         label: 사역 소개
@@ -530,6 +523,16 @@ collections:
           식사봉사, 나눔행사처럼 지역의 이웃을 섬긴 활동이면 체크해 주세요.
           ‘사역 소개’ 페이지의 ‘섬김의 현장’에 사진이 함께 나옵니다.
           (공개로 설정한 앨범만 나옵니다)
+
+      - label: 샛별어린이집 앨범
+        name: daycare
+        widget: boolean
+        default: false
+        required: false
+        hint: >-
+          샛별어린이집 활동 사진이면 체크해 주세요. ‘행사 사진’ 대신
+          ‘샛별어린이집’ 페이지에 앨범으로 나옵니다. 아이 이름표가
+          보이지 않는지도 꼭 확인해 주세요.
 
       - label: 행사 이름
         name: title
