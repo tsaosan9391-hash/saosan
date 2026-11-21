@@ -320,12 +320,13 @@ collections:
             hint: 빈 줄을 한 줄 넣으면 문단이 나뉘어 보입니다.
           - { label: 주소, name: address, widget: string, required: false, hint: "비워 두면 표시하지 않습니다." }
           - { label: 전화, name: phone, widget: string, required: false, hint: "어린이집 대표번호만 적어 주세요. 비워 두면 표시하지 않습니다." }
+          - { label: 사진 제목, name: photosTitle, widget: string, required: false, hint: "예) 소망반 10월 활동 사진" }
           - label: 사진
             name: photos
             widget: image
             multiple: true
             required: false
-            hint: 여러 장을 한 번에 올릴 수 있습니다. 아이 얼굴이 드러나는 사진은 보호자 동의를 확인해 주세요.
+            hint: 여러 장을 한 번에 올릴 수 있습니다. 아이 얼굴이 드러나는 사진은 보호자 동의를 확인해 주세요. 사진 속 아이 이름표가 보이지 않는지도 확인해 주세요.
 
       - name: ministry
         label: 사역 소개
