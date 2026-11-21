@@ -332,7 +332,7 @@ export const navigation = [
   ...(church.youtubeChannelId
     ? [{ label: navLabels.sermons, href: "/sermons" }]
     : []),
-  { label: navLabels.ministry, href: "/ministry" },
+  // '사역 소개'는 메뉴에서 뺐습니다. 같은 핵심 가치가 교회 소개 맨 위에 있고, 페이지(/ministry)는 남겨 두었습니다.
   { label: navLabels.daycare, href: "/daycare" },
   { label: navLabels.gallery, href: "/gallery" },
   { label: navLabels.news, href: "/news" },
