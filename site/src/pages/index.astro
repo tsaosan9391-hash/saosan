@@ -304,7 +304,7 @@ const latestDaycare = (
       )
   }
 
-  {/* ─── 유튜브 (행사·찬양 영상) ──────────────────────────── */}
+  {/* ─── 예배 영상 ─────────────────────────────────────── */}
   {/* 바로 위가 같은 흰 바탕(구세군 소개)이면 위 여백을 줄여 간격이 벌어지지 않게 합니다 */}
   {
     videoDisplay.homeEventCount > 0 &&
@@ -317,7 +317,7 @@ const latestDaycare = (
         >
           <div class="mx-auto max-w-6xl px-5">
             <div class="flex flex-wrap items-center justify-between gap-4">
-              <p class="eyebrow">유튜브</p>
+              <p class="eyebrow">예배 영상</p>
               <a
                 href="/sermons"
                 class="font-bold text-sa-red hover:underline"
@@ -346,6 +346,23 @@ const latestDaycare = (
           </div>
         </section>
       )
+  }
+
+  {/* ─── 스케치 영상 (관리자 화면 '스케치 영상'에 넣은 것) ──────── */}
+  {
+    videos.some((v) => v.category === "sketch") && (
+      <section class="bg-white pb-20 md:pb-24">
+        <div class="mx-auto max-w-6xl px-5">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <p class="eyebrow">스케치</p>
+            <a href="/sermons" class="font-bold text-sa-red hover:underline">
+              전체 보기 →
+            </a>
+          </div>
+          <VideoGrid videos={videos} registered={registered} limit={3} filter="sketch" />
+        </div>
+      </section>
+    )
   }
 
   {/* ─── 행사 사진 ─────────────────────────────────────── */}

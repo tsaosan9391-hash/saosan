@@ -379,6 +379,14 @@ collections:
             hint: >-
               유튜브 채널에는 두되 홈페이지에서는 빼고 싶은 영상의 주소를
               한 줄에 하나씩 넣어 주세요. (예: https://www.youtube.com/watch?v=...)
+              제목에 '실시간'이 들어간 영상은 넣지 않아도 저절로 빠집니다.
+          - label: 스케치 영상
+            name: sketchVideos
+            widget: list
+            required: false
+            hint: >-
+              행사 스케치로 따로 보여 줄 영상의 주소를 한 줄에 하나씩 넣어 주세요.
+              예배 영상 아래 '스케치' 목록에 나옵니다.
 
   # ── 공지사항 ────────────────────────────────────────────
   - name: notices
@@ -449,9 +457,12 @@ collections:
       - label: 설교 영상만
         field: category
         pattern: sermon
-      - label: 행사 스케치만
+      - label: 예배 영상만
         field: category
         pattern: event
+      - label: 스케치만
+        field: category
+        pattern: sketch
     fields:
       - label: 어느 목록에 넣을까요
         name: category
@@ -459,7 +470,8 @@ collections:
         default: sermon
         options:
           - { label: 설교 영상, value: sermon }
-          - { label: 행사 스케치, value: event }
+          - { label: 예배 영상, value: event }
+          - { label: 스케치, value: sketch }
 
       - label: 영상 제목
         name: title

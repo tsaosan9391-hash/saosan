@@ -39,7 +39,7 @@ const videos = defineCollection({
     /** 유튜브 주소 — 일부공개 영상도 그대로 붙여넣으면 됩니다 */
     youtubeUrl: z.string().url(),
     /** 설교 목록에 넣을지, 행사 스케치 목록에 넣을지 */
-    category: z.enum(["sermon", "event"]).default("sermon"),
+    category: z.enum(["sermon", "event", "sketch"]).default("sermon"),
   }),
 });
 
