@@ -35,8 +35,8 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
         ]}
       >
         {
-          ministries.map((m, i) => (
-            <div class="group relative overflow-hidden rounded-xl border border-sa-line p-8 transition-colors hover:border-sa-red">
+          ministries.map((m) => (
+            <div class="group relative overflow-hidden rounded-xl border border-sa-line px-6 py-10 text-center transition-colors hover:border-sa-red sm:py-12">
               {m.photo && (
                 <>
                   {/* 마우스를 올리면 은은하게 나타나는 배경 사진 */}
@@ -54,12 +54,9 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
                 </>
               )}
               <div class="relative z-10">
-                <p class="text-2xl font-bold text-sa-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
                 <h3
                   class:list={[
-                    "mt-3 text-xl font-bold transition-colors duration-500",
+                    "text-2xl font-bold transition-colors duration-500 sm:text-3xl",
                     m.photo && "group-hover:text-white",
                   ]}
                 >
@@ -67,7 +64,7 @@ const fmt = (d: Date) => `${d.getFullYear()}년 ${d.getMonth() + 1}월`;
                 </h3>
                 <p
                   class:list={[
-                    "mt-3.5 leading-relaxed text-sa-muted transition-colors duration-500",
+                    "mt-4 text-lg leading-relaxed text-sa-muted transition-colors duration-500 sm:text-xl",
                     m.photo && "group-hover:text-white/90",
                   ]}
                 >
