@@ -23,6 +23,7 @@ const feed = await fetchChannelVideos(church.youtubeChannelId, 15);
 const allVideos = mergeVideos(feed, registered);
 const sermonVideos = allVideos.filter((v) => v.category === "sermon");
 const eventVideos = allVideos.filter((v) => v.category === "event");
+const sketchVideos = allVideos.filter((v) => v.category === "sketch");
 ---
 
 <Base
@@ -58,7 +59,7 @@ const eventVideos = allVideos.filter((v) => v.category === "event");
           {/* 화면에는 보이지 않는 페이지 제목 (검색엔진·화면낭독기용) */}
           <h1 class="sr-only">교회 영상</h1>
           <div class="flex flex-wrap items-center justify-between gap-4">
-            <p class="eyebrow">유튜브</p>
+            <p class="eyebrow">예배 영상</p>
             {church.youtube && (
               <a
                 href={church.youtube}
@@ -81,9 +82,20 @@ const eventVideos = allVideos.filter((v) => v.category === "event");
     )
   }
 
+  {/* ─── 스케치 영상 ─────────────────────────────────── */}
+  {sketchVideos.length > 0 && (
+    <section class="py-20 md:py-24">
+      <div class="mx-auto max-w-6xl px-5">
+        <p class="eyebrow">스케치</p>
+        <VideoGrid videos={allVideos} registered={registered} limit={12} filter="sketch" />
+      </div>
+    </section>
+  )}
+
   {/* 보여 줄 영상이 하나도 없을 때 */}
   {!(sermonVideos.length > 0 && videoDisplay.pageSermonCount > 0) &&
-    !(eventVideos.length > 0 && videoDisplay.pageEventCount > 0) && (
+    !(eventVideos.length > 0 && videoDisplay.pageEventCount > 0) &&
+    sketchVideos.length === 0 && (
       <section class="py-20 md:py-24">
         <div class="mx-auto max-w-6xl px-5">
           <h1 class="text-2xl font-bold sm:text-3xl">교회 영상</h1>

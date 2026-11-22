@@ -16,8 +16,8 @@ export type Video = {
   thumbnail: string;
   url: string;
   isShort: boolean;
-  /** 제목에 '설교'가 들어있으면 말씀 영상, 아니면 행사·소식 영상 */
-  category: "sermon" | "event";
+  /** 제목에 '설교'가 들어있으면 말씀 영상, 아니면 예배 영상. 관리자가 고른 영상은 스케치 */
+  category: "sermon" | "event" | "sketch";
 };
 
 /** 제목만 보고 설교 영상인지 가려냅니다. 교회에서 이미 제목에 '설교'를 넣어 올리고 있어 정확히 걸러집니다. */
@@ -170,7 +170,7 @@ export function toVideo(entry: {
   title: string;
   date: Date;
   youtubeUrl: string;
-  category: "sermon" | "event";
+  category: "sermon" | "event" | "sketch";
 }): Video | null {
   const id = extractVideoId(entry.youtubeUrl);
   if (!id) return null;
@@ -197,8 +197,11 @@ export function mergeVideos(
 ): Video[] {
   const registeredIds = new Set(registered.map((v) => v.id));
   return [...registered, ...feed.filter((v) => !registeredIds.has(v.id))]
-    // 관리자 화면 '숨길 영상'에 넣은 영상은 어디에도 보여주지 않습니다
-    .filter((v) => !hiddenVideoIds.has(v.id))
+    // 관리자 화면 '숨길 영상'에 넣은 영상과, 제목에 '실시간'이 들어간
+    // 실시간 예배 영상은 어디에도 보여주지 않습니다
+    .filter((v) => !hiddenVideoIds.has(v.id) && !/실시간/.test(v.title))
+    // 관리자 화면 '스케치 영상'에 넣은 영상은 스케치 목록으로 옮깁니다
+    .map((v) => (sketchVideoIds.has(v.id) ? { ...v, category: "sketch" as const } : v))
     .sort(
     (a, b) =>
       new Date(b.published).getTime() - new Date(a.published).getTime(),
@@ -206,11 +209,11 @@ export function mergeVideos(
 }
 
 /** 관리자 화면 '숨길 영상'에 넣은 영상 번호. 유튜브 주소를 넣어도, 번호만 넣어도 됩니다. */
-const hiddenVideoIds = new Set(
-  ((videoSettings as { hiddenVideos?: string[] }).hiddenVideos ?? [])
-    .map((u) => extractVideoId(u) ?? u.trim())
-    .filter(Boolean),
-);
+const toIds = (list?: string[]) =>
+  new Set((list ?? []).map((u) => extractVideoId(u) ?? u.trim()).filter(Boolean));
+const hiddenVideoIds = toIds((videoSettings as { hiddenVideos?: string[] }).hiddenVideos);
+/** 관리자 화면 '스케치 영상'에 넣은 영상 번호 */
+const sketchVideoIds = toIds((videoSettings as { sketchVideos?: string[] }).sketchVideos);
 
 /** 'YYYY.MM.DD' 형식으로 변환 */
 export function formatDate(iso: string): string {
