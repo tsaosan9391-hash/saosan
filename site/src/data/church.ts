@@ -48,7 +48,7 @@ const DEFAULTS = {
   email: "",
   instagram: "",
   mainServices: [
-    { name: "주일 성결예배", day: "주일", time: "오전 11:00" },
+    { name: "주일 성결예배", day: "주일", time: "오전 10:45" },
   ] as MainService[],
   prayerServices: [] as Service[],
   groups: [] as Service[],
