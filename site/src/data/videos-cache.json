@@ -1,6 +1,15 @@
 {
   "videos": [
     {
+      "id": "wS1iAMrLhqs",
+      "title": "2026 추수감사주일",
+      "published": "2026-11-21T13:45:28+00:00",
+      "thumbnail": "https://i4.ytimg.com/vi/wS1iAMrLhqs/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=wS1iAMrLhqs",
+      "isShort": false,
+      "category": "event"
+    },
+    {
       "id": "zrLpPxmTMmk",
       "title": "회복 #예배 #말씀 #구세군오산교회 #salvation #salvationarmy #korea #정상혁 #사관",
       "published": "2026-11-17T13:12:28+00:00",
@@ -124,15 +133,6 @@
       "thumbnail": "https://i2.ytimg.com/vi/12DIRU3JvGI/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=12DIRU3JvGI",
       "isShort": false,
-      "category": "event"
-    },
-    {
-      "id": "M9Cs5lsu5Jc",
-      "title": "랜덤 비빔밥 챌린지 #shorts #랜덤비빔밤 #비빔밥 #챌린지 #성공 #맛있다 #구세군 #구세군오산교회 #행복",
-      "published": "2026-07-28T12:38:28+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/M9Cs5lsu5Jc/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=M9Cs5lsu5Jc",
-      "isShort": true,
       "category": "event"
     }
   ]
