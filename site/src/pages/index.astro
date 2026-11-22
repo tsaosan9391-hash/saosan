@@ -314,7 +314,7 @@ const latestDaycare = (
       videos.some((v) => v.category === "event") && (
         <section
           class:list={[
-            "bg-white pb-20 md:pb-24",
+            "bg-white pb-10 md:pb-12",
             showSermonSection ? "pt-20 md:pt-24" : "pt-0",
           ]}
         >
@@ -341,7 +341,7 @@ const latestDaycare = (
                 filter="event"
                 gridClass={
                   videoDisplay.homeEventCount === 1
-                    ? "mt-12 grid"
+                    ? "mt-8 grid"
                     : undefined
                 }
               />
@@ -354,7 +354,7 @@ const latestDaycare = (
   {/* ─── 스케치 영상 (관리자 화면 '스케치 영상'에 넣은 것) ──────── */}
   {
     videos.some((v) => v.category === "sketch") && (
-      <section class="bg-white pb-20 md:pb-24">
+      <section class="bg-white py-10 md:py-12">
         <div class="mx-auto max-w-6xl px-5">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <p class="eyebrow">스케치</p>
@@ -371,7 +371,7 @@ const latestDaycare = (
   {/* ─── 행사 사진 ─────────────────────────────────────── */}
   {
     latestGallery && (
-      <section class="py-20 md:py-24">
+      <section class="py-10 md:py-12">
         <div class="mx-auto max-w-6xl px-5">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -385,7 +385,7 @@ const latestDaycare = (
             </a>
           </div>
 
-          <div class="mt-12">
+          <div class="mt-8">
             <PhotoSlideshow photos={latestGallery.data.photos.slice(0, 8)} />
           </div>
 
@@ -404,7 +404,7 @@ const latestDaycare = (
   {/* ─── 샛별어린이집 사진 ──────────────────────────────── */}
   {
     latestDaycare && (
-      <section class:list={["pb-20 md:pb-24", latestGallery ? "pt-0" : "pt-20 md:pt-24"]}>
+      <section class="pt-10 pb-20 md:pt-12 md:pb-24">
         <div class="mx-auto max-w-6xl px-5">
           <div class="flex flex-wrap items-end justify-between gap-4">
             <div>
@@ -418,7 +418,7 @@ const latestDaycare = (
             </a>
           </div>
 
-          <div class="mt-12">
+          <div class="mt-8">
             <PhotoSlideshow photos={latestDaycare.data.photos.slice(0, 8)} />
           </div>
 
