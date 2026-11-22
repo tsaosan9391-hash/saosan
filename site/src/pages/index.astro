@@ -102,34 +102,34 @@ const latestDaycare = (
       {/*
         바로가기 (메인 사진과 아래 칸 사이 가운데):
         예배 시간 안내 → 샛별어린이집 → 오시는 길 → 유튜브 채널 → 인스타그램
-        항상 한 줄. 휴대폰은 다섯 칸을 같은 너비로(아이콘 위, 글자 아래),
+        항상 한 줄. 휴대폰은 다섯 칸을 같은 너비·같은 높이로(아이콘 위, 짧은 이름 아래),
         태블릿부터는 아이콘과 글자를 옆으로 나란히 둔 직사각형 버튼으로 보여 줍니다.
         유튜브·인스타그램은 주소가 비어 있으면 숨김
       */}
       <div class="mb-10 grid auto-cols-fr grid-flow-col gap-1.5 sm:gap-2.5 md:mb-12 lg:flex lg:justify-center lg:gap-3">
-        <a href="#worship" class="flex min-w-0 flex-col items-center justify-start gap-1 rounded-md border px-1 py-2.5 text-center text-[0.75rem] font-bold leading-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:whitespace-nowrap sm:px-3 sm:py-0 sm:text-sm lg:px-5 lg:text-base border-sa-red bg-sa-red text-white hover:bg-sa-red-dark">
+        <a href="#worship" class="flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center text-[clamp(0.6875rem,3.1vw,0.8125rem)] font-bold leading-none tracking-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:text-sm sm:tracking-normal lg:px-5 lg:text-base border-sa-red bg-sa-red text-white hover:bg-sa-red-dark">
           <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
-          예배 시간 안내
+          <span class="sm:hidden">예배시간</span><span class="hidden sm:inline">예배 시간 안내</span>
         </a>
-        <a href="/daycare" class="flex min-w-0 flex-col items-center justify-start gap-1 rounded-md border px-1 py-2.5 text-center text-[0.75rem] font-bold leading-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:whitespace-nowrap sm:px-3 sm:py-0 sm:text-sm lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
+        <a href="/daycare" class="flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center text-[clamp(0.6875rem,3.1vw,0.8125rem)] font-bold leading-none tracking-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:text-sm sm:tracking-normal lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
           <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7Z"></path></svg>
-          <span>샛별<wbr />어린이집</span>
+          <span class="sm:hidden">어린이집</span><span class="hidden sm:inline">샛별어린이집</span>
         </a>
-        <a href="/visit" class="flex min-w-0 flex-col items-center justify-start gap-1 rounded-md border px-1 py-2.5 text-center text-[0.75rem] font-bold leading-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:whitespace-nowrap sm:px-3 sm:py-0 sm:text-sm lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
+        <a href="/visit" class="flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center text-[clamp(0.6875rem,3.1vw,0.8125rem)] font-bold leading-none tracking-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:text-sm sm:tracking-normal lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
           <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
-          오시는 길
+          <span class="sm:hidden">오시는 길</span><span class="hidden sm:inline">오시는 길</span>
         </a>
         {church.youtube && (
-          <a href={church.youtube} target="_blank" rel="noopener noreferrer" class="flex min-w-0 flex-col items-center justify-start gap-1 rounded-md border px-1 py-2.5 text-center text-[0.75rem] font-bold leading-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:whitespace-nowrap sm:px-3 sm:py-0 sm:text-sm lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
-            <svg class="h-5 w-auto shrink-0 sm:h-6" viewBox="0 0 28 20" aria-hidden="true">
+          <a href={church.youtube} target="_blank" rel="noopener noreferrer" class="flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center text-[clamp(0.6875rem,3.1vw,0.8125rem)] font-bold leading-none tracking-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:text-sm sm:tracking-normal lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
+            <svg class="h-4 w-auto shrink-0 sm:h-6" viewBox="0 0 28 20" aria-hidden="true">
                     <path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 25 .6C22.8 0 14 0 14 0S5.2 0 3 .6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9A3.5 3.5 0 0 0 3 19.4c2.2.6 11 .6 11 .6s8.8 0 11-.6a3.5 3.5 0 0 0 2.4-2.5c.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z"></path>
                     <path fill="#fff" d="M11.2 14.3 18.5 10l-7.3-4.3v8.6Z"></path>
                   </svg>
-            유튜브 채널
+            <span class="sm:hidden">유튜브</span><span class="hidden sm:inline">유튜브 채널</span>
           </a>
         )}
         {church.instagram && (
-          <a href={church.instagram} target="_blank" rel="noopener noreferrer" class="flex min-w-0 flex-col items-center justify-start gap-1 rounded-md border px-1 py-2.5 text-center text-[0.75rem] font-bold leading-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:whitespace-nowrap sm:px-3 sm:py-0 sm:text-sm lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
+          <a href={church.instagram} target="_blank" rel="noopener noreferrer" class="flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center text-[clamp(0.6875rem,3.1vw,0.8125rem)] font-bold leading-none tracking-tight shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:text-sm sm:tracking-normal lg:px-5 lg:text-base border-sa-line bg-white text-sa-ink hover:text-sa-red">
             <svg class="h-5 w-5 shrink-0 sm:h-6 sm:w-6" viewBox="0 0 24 24" aria-hidden="true">
                     <defs>
                       <radialGradient id="ig-grad" cx="0.3" cy="1.07" r="1.2">
@@ -145,7 +145,7 @@ const latestDaycare = (
                     <circle cx="12" cy="12" r="3.3" fill="none" stroke="#fff" stroke-width="1.8"></circle>
                     <circle cx="16.4" cy="7.6" r="1.1" fill="#fff"></circle>
                   </svg>
-            <span>인스타<wbr />그램</span>
+            <span class="sm:hidden">인스타그램</span><span class="hidden sm:inline">인스타그램</span>
           </a>
         )}
       </div>
