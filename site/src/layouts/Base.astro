@@ -2,7 +2,7 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { church, mainServices } from "../data/church";
+import { church, mainServices, heroPhotos } from "../data/church";
 import seo from "../data/settings/seo.json";
 
 interface Props {
@@ -62,7 +62,8 @@ const naverVerification = verificationCode(seo.naverVerification);
     <meta property="og:site_name" content={church.name} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL("/images/hero-1600.jpg", Astro.site)} />
+    {/* 링크 공유 미리보기 사진: 메인 화면 배경 사진의 첫 번째 사진 */}
+    <meta property="og:image" content={new URL(heroPhotos[0]?.src ?? "/images/hero-1600.jpg", Astro.site)} />
     <meta property="og:locale" content="ko_KR" />
     <meta name="twitter:card" content="summary_large_image" />
 
