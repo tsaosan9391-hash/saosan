@@ -327,12 +327,12 @@ const navLabels = { ...DEFAULTS.navLabels, ...navSettings };
 export const navigation = [
   { label: navLabels.about, href: "/about" },
   // '예배와 모임'·'사역 소개'는 메뉴에서 뺐습니다. 페이지(/worship, /ministry)는 남겨 두었습니다.
-  { label: navLabels.daycare, href: "/daycare" },
   // 유튜브 채널이 없으면 '영상' 메뉴를 숨깁니다
   ...(church.youtubeChannelId
     ? [{ label: navLabels.sermons, href: "/sermons" }]
     : []),
   { label: navLabels.gallery, href: "/gallery" },
   { label: navLabels.news, href: "/news" },
+  { label: navLabels.daycare, href: "/daycare" },
   { label: navLabels.visit, href: "/visit" },
 ];
