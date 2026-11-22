@@ -154,9 +154,12 @@ const latestDaycare = (
       <div class="grid gap-8 lg:grid-cols-2">
         <div class="flex flex-col items-start rounded-xl bg-sa-surface p-7 sm:p-9">
           <p class="eyebrow">구세군이란</p>
-          <h2 class="mt-4 text-2xl font-bold sm:text-3xl">
-            1865년 영국 런던에서 시작된 교단입니다
-          </h2>
+          {/* 칸 너비에 맞춰 글자 크기를 줄여 어느 화면에서도 한 줄로 보이게 합니다 */}
+          <div class="@container w-full">
+            <h2 class="mt-4 whitespace-nowrap text-[min(1.875rem,6.1cqi)] font-bold">
+              1865년 영국 런던에서 시작된 교단입니다
+            </h2>
+          </div>
           {/* 빈 줄로 나눈 문단마다 따로 보여 줍니다 (관리자 화면에서 빈 줄로 문단 구분) */}
           <div class="mt-6">
             {intro.salvationArmy
