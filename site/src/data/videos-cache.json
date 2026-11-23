@@ -1,6 +1,15 @@
 {
   "videos": [
     {
+      "id": "RWy42gdfefA",
+      "title": "구세군오산교회 주일 성결회 실시간 예배",
+      "published": "2026-11-22T03:10:56+00:00",
+      "thumbnail": "https://i3.ytimg.com/vi/RWy42gdfefA/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=RWy42gdfefA",
+      "isShort": false,
+      "category": "event"
+    },
+    {
       "id": "wS1iAMrLhqs",
       "title": "2026 추수감사주일",
       "published": "2026-11-21T13:45:28+00:00",
@@ -123,15 +132,6 @@
       "published": "2026-07-30T14:22:41+00:00",
       "thumbnail": "https://i2.ytimg.com/vi/MPsZzUctkAU/hqdefault.jpg",
       "url": "https://www.youtube.com/watch?v=MPsZzUctkAU",
-      "isShort": false,
-      "category": "event"
-    },
-    {
-      "id": "12DIRU3JvGI",
-      "title": "주만 바라볼찌라 #예배 #찬양 #구세군 #구세군오산교회",
-      "published": "2026-07-29T13:08:14+00:00",
-      "thumbnail": "https://i2.ytimg.com/vi/12DIRU3JvGI/hqdefault.jpg",
-      "url": "https://www.youtube.com/watch?v=12DIRU3JvGI",
       "isShort": false,
       "category": "event"
     }
