@@ -81,7 +81,7 @@ const latestDaycare = (
     <!-- 밝은 사진 위에 흰 글씨를 얹기 위한 그라데이션 -->
     <div class="hero-scrim absolute inset-0" aria-hidden="true"></div>
 
-    <div class="relative mx-auto max-w-6xl px-5 pt-10 pb-[16.5rem] sm:pb-[17.5rem] md:pt-14 md:pb-[18.5rem] lg:pt-16 lg:pb-64">
+    <div class="relative mx-auto max-w-6xl px-5 pt-10 pb-[14.75rem] sm:pb-[17.5rem] md:pt-14 md:pb-[18.5rem] lg:pt-16 lg:pb-64">
       <div class="max-w-2xl">
         <p class="text-sm font-bold tracking-[0.2em] text-sa-gold">
           THE SALVATION ARMY · {church.name}
@@ -103,26 +103,26 @@ const latestDaycare = (
             바로가기: 메인 사진 위에 반투명 칸으로 겹쳐 둡니다.
             컴퓨터(1024px 이상)는 하단 번호 옆(오른쪽), 휴대폰·태블릿은 번호 바로 위.
             예배 시간 → 샛별어린이집 → 오시는 길 → 유튜브 채널 → 인스타그램
-            항상 한 줄. 휴대폰은 다섯 칸을 같은 너비·같은 높이로(아이콘 위, 이름 아래 — 칸 너비에 맞춰 글자 크기를 줄여 한 줄),
+            항상 한 줄. 휴대폰은 다섯 칸을 같은 너비·같은 높이로(아이콘 없이 이름만 — 칸 너비에 맞춰 글자 크기를 줄여 한 줄),
             태블릿부터는 아이콘과 글자를 옆으로 나란히 둔 직사각형 버튼으로 보여 줍니다.
             유튜브·인스타그램은 주소가 비어 있으면 숨김
           */}
           <div class="grid auto-cols-fr grid-flow-col gap-1 sm:gap-2.5 lg:flex lg:justify-end lg:gap-3">
-            <a href="#worship" class="@container sm:[container-type:normal] flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-sa-red bg-sa-red text-white hover:bg-sa-red-dark">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+            <a href="#worship" class="@container sm:[container-type:normal] flex h-10 min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-sa-red bg-sa-red text-white hover:bg-sa-red-dark">
+              <svg class="hidden h-5 w-5 shrink-0 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
               <span class="text-[min(0.8125rem,20cqi)] sm:text-sm lg:text-base">예배 시간</span>
             </a>
-            <a href="/daycare" class="@container sm:[container-type:normal] flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7Z"></path></svg>
+            <a href="/daycare" class="@container sm:[container-type:normal] flex h-10 min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
+              <svg class="hidden h-5 w-5 shrink-0 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7Z"></path></svg>
               <span class="text-[min(0.8125rem,20cqi)] sm:text-sm lg:text-base">샛별어린이집</span>
             </a>
-            <a href="/visit" class="@container sm:[container-type:normal] flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
-              <svg class="h-5 w-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+            <a href="/visit" class="@container sm:[container-type:normal] flex h-10 min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
+              <svg class="hidden h-5 w-5 shrink-0 sm:block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
               <span class="text-[min(0.8125rem,20cqi)] sm:text-sm lg:text-base">오시는 길</span>
             </a>
             {church.youtube && (
-              <a href={church.youtube} target="_blank" rel="noopener noreferrer" class="@container sm:[container-type:normal] flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
-                <svg class="my-0.5 h-4 w-auto shrink-0 sm:my-0 sm:h-6" viewBox="0 0 28 20" aria-hidden="true">
+              <a href={church.youtube} target="_blank" rel="noopener noreferrer" class="@container sm:[container-type:normal] flex h-10 min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
+                <svg class="hidden h-6 w-auto shrink-0 sm:block" viewBox="0 0 28 20" aria-hidden="true">
                         <path fill="#FF0000" d="M27.4 3.1A3.5 3.5 0 0 0 25 .6C22.8 0 14 0 14 0S5.2 0 3 .6A3.5 3.5 0 0 0 .6 3.1C0 5.3 0 10 0 10s0 4.7.6 6.9A3.5 3.5 0 0 0 3 19.4c2.2.6 11 .6 11 .6s8.8 0 11-.6a3.5 3.5 0 0 0 2.4-2.5c.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9Z"></path>
                         <path fill="#fff" d="M11.2 14.3 18.5 10l-7.3-4.3v8.6Z"></path>
                       </svg>
@@ -130,8 +130,8 @@ const latestDaycare = (
               </a>
             )}
             {church.instagram && (
-              <a href={church.instagram} target="_blank" rel="noopener noreferrer" class="@container sm:[container-type:normal] flex h-[4.25rem] min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
-                <svg class="h-5 w-5 shrink-0 sm:h-6 sm:w-6" viewBox="0 0 24 24" aria-hidden="true">
+              <a href={church.instagram} target="_blank" rel="noopener noreferrer" class="@container sm:[container-type:normal] flex h-10 min-w-0 flex-col items-center justify-center gap-1.5 whitespace-nowrap rounded-lg border px-0.5 text-center font-bold leading-none tracking-tight transition hover:-translate-y-0.5 sm:h-14 sm:flex-row sm:justify-center sm:gap-2 sm:rounded-md sm:px-3 sm:tracking-normal lg:px-5 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20">
+                <svg class="hidden h-6 w-6 shrink-0 sm:block" viewBox="0 0 24 24" aria-hidden="true">
                         <defs>
                           <radialGradient id="ig-grad" cx="0.3" cy="1.07" r="1.2">
                             <stop offset="0" stop-color="#FFD776"></stop>
